@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE Document [
+  <!ENTITY psoa  "http://www.w3.org/2011/psoa#">
+  <!ENTITY xs   "http://www.w3.org/2001/XMLSchema#">
+  <!ENTITY rdf  "http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+]>
+
+<Document xmlns="&psoa;">
+  <directive>
+    <Prefix>
+      <name>cpt</name>
+      <expansion>http://eg.com/concepts#</expansion>
+    </Prefix>
+    <Prefix>
+      <name>mus</name>
+      <expansion>http://eg.com/museums#</expansion>
+    </Prefix>
+    <Prefix>
+      <name>func</name>
+      <expansion>http://www.w3.org/2007/rif-builtin-function#</expansion>
+    </Prefix>
+    <Prefix>
+      <name>xs</name>
+      <expansion>http://www.w3.org/2001/XMLSchema#</expansion>
+    </Prefix>
+</directive>  
+  <payload>
+   <Group>
+    <groupelement>
+     <Forall>
+      <declare>
+      <Var>cost</Var>
+      </declare>
+      <declare>
+      <Var>cost1</Var>
+      </declare>
+      <declare>
+      <Var>cost2</Var>
+      </declare>
+      <declare>
+      <Var>A</Var>
+      </declare>
+      <declare>
+      <Var>B</Var>
+      </declare>
+      <formula>
+    <Implies>
+       <if>
+     <Atom>
+     <Member>
+      <instance>
+       <Const type="&psoa;iri">http://example.org/#a</Const>
+      </instance>
+      <class>
+       <Const type="&psoa;iri">http://example.org/#b</Const>
+      </class>
+      </Member>
+      <tuple>
+       <Var>vartup1</Var>
+       <Const type="&psoa;iri">http://example.org/#c</Const>
+      </tuple>      
+     </Atom>
+      </if>
+       <then>
+	  <And>
+	  <formula>
+	  <Subclass>
+	    <sub>
+	      <Var>asdf</Var>
+	    </sub>
+	    <super>
+	      <Const type="&psoa;iri">http://example.org/#b</Const>
+	    </super>
+	  </Subclass>
+	  </formula>
+	  <formula>
+	  <Subclass>
+	    <sub>
+	      <Var>lkjadf</Var>
+	    </sub>
+	    <super>
+	      <Const type="&psoa;iri">http://example.org/#d</Const>
+	    </super>
+	  </Subclass>
+	  </formula>
+	  </And>
+        </then>
+      </Implies>
+      </formula>
+     </Forall>
+    </groupelement>
+   </Group>
+  </payload>
+</Document>

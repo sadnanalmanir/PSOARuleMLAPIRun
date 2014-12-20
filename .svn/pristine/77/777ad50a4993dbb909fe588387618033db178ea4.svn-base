@@ -1,0 +1,60 @@
+   Document (
+   
+   Base(<http://thisisbase.com/#base>)
+   
+   Prefix(   shotname1    <http://expansionforshotname1.com/#shortname1>)
+   
+   Import(<this is a location1>       <http://example.org/#b>    )
+   Import(<this is a location2>       <http://example.org/#c>    )
+   Import(<this is a location3>    )
+   Import(<this is a location4>       <http://example.org/#d>    )
+   
+   Group
+    (
+   
+     And
+      (
+
+            Exists ?testVar ?var2 
+        (
+          ?var2 ## ?testVar
+        )
+            Exists ?var2 
+        (
+          ?var2 ## http://example.org/#d
+        )
+            Exists ?var2 
+        (
+          ?var2 ## http://example.org/#f
+        )
+      ) :-
+       Or
+        (
+                Exists var2 
+          (           http://example.org/#b = ?var2         
+          )
+                         http://example.org/#b # http://example.org/#b          (          ( http://example.org/#b ?vartup2 )         )
+                http://example.org/#b = http://example.org/#b
+                External(                   http://example.org/#b # "a"^^psoa:local          (          ( http://example.org/#b ?vartup2 )         ))
+                Or
+          (
+                    Exists var2 
+            (             http://example.org/#b = ?var2           
+            )
+                               http://example.org/#b # http://example.org/#b            (            ( http://example.org/#b ?vartup2 )           )
+                    http://example.org/#b = http://example.org/#b
+                    External(                       http://example.org/#b # "a"^^psoa:local            (            ( http://example.org/#b ?vartup2 )           ))
+                               http://example.org/#b # http://example.org/#b            (            ( http://example.org/#b1 http://example.org/#b2 http://example.org/#b3 http://example.org/#b4 )                                 ?var1 ->            ?var2
+                      ?var3 ->            ?var4
+                      ?var5 ->            ?var6
+                      ?var7 ->            ?var8
+                      ?var9 ->            ?var10
+                      ?var11 ->            ?var12
+                      ?var13 ->            ?var14
+                      ?var15 ->            ?var16           )
+          )
+        )
+
+    )
+   
+   )

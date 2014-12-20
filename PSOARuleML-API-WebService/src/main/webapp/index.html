@@ -1,0 +1,127 @@
+    <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+    <html>
+        <head>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+            
+            <title>PSOA RuleML API</title>
+            
+            <link type="text/css" href="css/custom-theme/jquery-ui-1.8.20.custom.css" rel="Stylesheet" />
+
+            <link rel="shortcut icon" href="http://jqueryui.com/jquery-wp-content/themes/jqueryui.com/i/favicon.ico">
+            <link rel="stylesheet" href="http://jqueryui.com/jquery-wp-content/themes/jquery/css/base.css?v=1">
+            <link rel="stylesheet" href="http://jqueryui.com/jquery-wp-content/themes/jqueryui.com/style.css">
+            <link rel="pingback" href="http://jqueryui.com/xmlrpc.php" />
+            <!--[if lt IE 7]><link rel="stylesheet" href="css/font-awesome-ie7.min.css"><![endif]-->
+
+            <script src="http://jqueryui.com/jquery-wp-content/themes/jquery/js/modernizr.custom.2.6.2.min.js"></script>
+            <script src="http://jqueryui.com/jquery-wp-content/themes/jquery/js/plugins.js"></script>
+            
+            <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>            
+            <script type="text/javascript" src="js/jquery-ui-1.8.20.custom.min.js"></script>
+            
+            
+            <!-- List of testcases-->
+            <script type="text/javascript" src="js/testcases/single_tuple_psoa_term.js" ></script>
+            <script type="text/javascript" src="js/testcases/multi_slot_psoa_term.js" ></script>
+            <script type="text/javascript" src="js/testcases/multi_valued_slot.js" ></script>
+            <script type="text/javascript" src="js/testcases/psoa_terms_with_slots_and_tuples.js" ></script>
+            <script type="text/javascript" src="js/testcases/family.js" ></script>
+            <script type="text/javascript" src="js/testcases/family_variation.js" ></script>
+            <script type="text/javascript" src="js/testcases/rule_test_psoa_terms.js" ></script>            
+            <script type="text/javascript" src="js/testcases/rule_test_psoa_facts.js" ></script>            
+            <script type="text/javascript" src="js/testcases/inheritance.js" ></script>            
+
+            <script type="text/javascript" src="js/main.js" ></script>
+
+        </head>
+        <body>
+            <br/>    
+            <h1>&nbsp;PSOA RuleML API-based Syntax Converter</h1>
+            <H3>&nbsp;&nbsp;PSOA RuleML/XML Syntax to PSOA Presentation Syntax</H3>
+            <div id="tabs">
+                <ul>
+                    <li>
+                        <a href="#tab-1">PSOA Rulebase in RuleML/XML Syntax</a>
+                    </li>
+                    <li>
+                        <a href="#tab-2">PSOA Rulebase in Presentation Syntax</a>
+                    </li>
+                </ul>
+                <div id="tab-1">
+                    <textarea id="PSOAKB" rows="20" cols="80"></textarea>																												
+
+                    <!-- Links Right begin-->
+                    <div style = "clear: right; float: right; text-align: left;">
+
+                        <ul>Select Rulebase
+                            <br />
+                            <div class="ui-button">
+                                <input id="testcase4_1Btn" type="button" value="Single-tuple psoa term" />
+                            </div>
+                            <br />
+                            <div class="ui-button">
+                                <input id="testcase4_2Btn" type="button" value="Multi-slot psoa term" />
+                            </div>
+                            <br />
+                            <div class="ui-button">
+                                <input id="testcase4_3Btn" type="button" value="Multi-valued Slot" />
+                            </div>
+                            <br />
+                            <div class="ui-button">
+                                <input id="testcase4_4Btn" type="button" value="Psoa terms with slots and tuples" />
+                            </div>
+                            <br />
+                            <div class="ui-button">
+                                <input id="testcase4_6Btn" type="button" value="Family" />
+                            </div>
+                            <br />
+                            <div class="ui-button">
+                                <input id="testcase4_7Btn" type="button" value="Family (Variation)" />
+                            </div>
+                            <br />
+                            <div class="ui-button">
+                                <input id="testcase4_8Btn" type="button" value="Rule Test - Psoa Terms" />
+                            </div>
+                            <br />
+                            <div class="ui-button">
+                                <input id="testcase4_9Btn" type="button" value="Rule Test - Psoa Facts" />
+                            </div>
+                            <br />
+                            <div class="ui-button">
+                                <input id="testcase4_15Btn" type="button" value="Inheritance" />
+                            </div>
+                    </div>
+                    <!-- Links right end-->
+
+                    <br/>
+                    <div style="visibility:hidden">
+                        <input type="radio" name="translatorType" value="Direct" />
+                        Direct Translator
+                        <input type="radio" name="translatorType" value="TPTPASO" checked="checked" />
+                        TPTP-ASO-based Translator
+                        <br/>
+                    </div>
+                    <input id="transKBBtn" type="button" value="Convert to Presentation Syntax" />
+                    <input id="showSampleKBBtn" type="button" value="Sample Rulebase" />
+                    <input id="resetKBBtn" type="button" value="Reset" />
+                </div>
+
+                <div id="tab-2">
+                    <textarea id="tptpOutput" rows="18" cols="80"></textarea>
+                    <!--h3>Query</h3-->
+                    <!--textarea id="PSOAQuery" rows="1" cols="80"></textarea-->																												
+
+
+
+
+
+
+
+                    <!--br/-->
+                    <!--input id="transQueryBtn" type="button" value="Translate Query" /-->
+                    <!--input id="runQueryBtn" type="button" value="Execute" /-->
+                </div>
+            </div>
+
+        </body>
+    </html>

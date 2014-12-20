@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE Document [
+  <!ENTITY psoa  "http://www.w3.org/2011/psoa#">
+  <!ENTITY xs   "http://www.w3.org/2001/XMLSchema#">
+  <!ENTITY rdf  "http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+]>
+
+<Document xmlns="&psoa;">
+  <payload>
+   <Group>
+    <groupelement>
+    <Implies>
+       <if>
+	  <Subclass>
+	    <sub>
+	      <Const type="&psoa;iri">http://example.org/#a</Const>
+	    </sub>
+	    <super>
+	      <Const type="&psoa;iri">http://example.org/#b</Const>
+	    </super>
+	  </Subclass>
+       </if>
+       <then>
+	  <Subclass>
+	    <sub>
+	      <Const type="&psoa;iri">http://example.org/#c</Const>
+	    </sub>
+	    <super>
+	      <Const type="&psoa;iri">http://example.org/#d</Const>
+	    </super>
+	  </Subclass>
+        </then>
+      </Implies>
+    </groupelement>
+   </Group>
+  </payload>
+</Document>

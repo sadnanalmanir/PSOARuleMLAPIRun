@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE Document [
+  <!ENTITY psoa  "http://www.w3.org/2011/psoa#">
+  <!ENTITY xs   "http://www.w3.org/2001/XMLSchema#">
+  <!ENTITY rdf  "http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+]>
+
+<Document xmlns="&psoa;">
+  <directive>
+    <Import>
+      <location>this is a location1</location>
+      <profile>http://example.org/#b</profile> 
+    </Import>   <!--as type="xs:anyURI" is DEFINED IN psoacond.xsd and is fixed, so  we put type="&xs:anyURI" instead of type="&psoa;iri"-->
+    <Import>
+      <location>this is a location2</location>
+      <profile>http://example.org/#c</profile> 
+    </Import>   <!--as type="xs:anyURI" is DEFINED IN psoacond.xsd and is fixed, so  we put type="&xs:anyURI" instead of type="&psoa;iri"-->
+    <Import>
+      <location>this is a location3</location> 
+    </Import>   <!--as type="xs:anyURI" is DEFINED IN psoacond.xsd and is fixed, so  we put type="&xs:anyURI" instead of type="&psoa;iri"-->
+  </directive>  
+  <payload>
+   <Group>
+    <groupelement>
+     <Equal>
+      <left>
+      <External>
+       <content>
+        <Expr>
+     <Member>
+      <instance>
+       <Const type="&psoa;iri">http://example.org/#b</Const>
+      </instance>
+      <class>
+       <Const type="&psoa;iri">http://example.org/#b</Const>
+      </class>
+      </Member>                          
+        </Expr>
+       </content>
+      </External>
+      </left>
+      <right>
+       <Const type="&psoa;iri">http://example.org/#b</Const>
+      </right>
+     </Equal>
+    </groupelement>
+   </Group>
+  </payload>
+</Document>

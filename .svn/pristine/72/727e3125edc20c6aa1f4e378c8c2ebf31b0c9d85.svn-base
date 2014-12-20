@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE Document [
+  <!ENTITY psoa  "http://www.w3.org/2011/psoa#">
+  <!ENTITY xs   "http://www.w3.org/2001/XMLSchema#">
+  <!ENTITY rdf  "http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+]>
+
+<Document xmlns="&psoa;">
+  <payload>
+   <Group>
+   <groupelement>
+   <Atom>
+     <Member>
+      <instance>
+       <Const type="&psoa;iri">_1</Const>
+      </instance>
+      <class>
+       <Const type="&psoa;iri">kid</Const>
+      </class>
+      </Member>
+      <tuple>
+      <Const type="&psoa;iri">Sue</Const>
+       <Const type="&psoa;iri">Pete</Const>
+      </tuple>
+     </Atom>
+    </groupelement>
+   </Group>
+  </payload>
+</Document>

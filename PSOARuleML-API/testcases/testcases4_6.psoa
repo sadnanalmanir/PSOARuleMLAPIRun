@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+    http://wiki.ruleml.org/index.php/PSOA_RuleML#Family_.28TBD.29
+-->
+
+<!DOCTYPE Document [
+  <!ENTITY psoa  "http://www.w3.org/2011/psoa#">
+  <!ENTITY xs   "http://www.w3.org/2001/XMLSchema#">
+  <!ENTITY rdf  "http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+]>
+
+<Document xmlns="&psoa;">
+  <payload>
+    <Group>
+      <sentence>
+        <Forall>
+          <declare>
+            <Var>Hu</Var>
+          </declare>
+          <declare>
+            <Var>Wi</Var>
+          </declare>
+          <declare>
+            <Var>Ch</Var>
+          </declare>
+          <formula>
+            <Implies>
+              <if>
+                <And>
+                  <formula>
+                    <Exists>
+                      <declare>
+                        <Var>obj2</Var>
+                      </declare>
+                      <formula>
+                        <Atom>
+                          <oid>
+                            <Var>obj2</Var>
+                          </oid>
+                          <op>
+                            <Rel type="&psoa;iri">_married</Rel>
+                          </op>
+                          <args>
+                            <Var>Hu</Var>
+                            <Var>Wi</Var>
+                          </args>
+                        </Atom>
+                      </formula>
+                    </Exists>
+                  </formula>
+                  <formula>
+                    <Exists>
+                      <declare>
+                        <Var>obj3</Var>
+                      </declare>
+                      <formula>
+                        <Atom>
+                          <oid>
+                            <Var>obj3</Var>
+                          </oid>
+                          <op>
+                            <Rel type="&psoa;iri">_kid</Rel>
+                          </op>
+                          <args>
+                            <Var>Hu</Var>
+                            <Var>Ch</Var>
+                          </args>
+                        </Atom>
+                      </formula>
+                    </Exists>
+                  </formula>
+                </And>
+              </if>
+              <then>
+                <Exists>
+                  <declare>
+                    <Var>obj1</Var>
+                  </declare>
+                  <formula>
+                    <Atom>
+                      <oid>
+                        <Var>obj1</Var>
+                      </oid>
+                      <op>
+                        <Rel type="&psoa;iri">_family</Rel>
+                      </op>
+                      <slot>
+                        <Ind type="&psoa;iri">_husb</Ind>
+                        <Var>Hu</Var>
+                      </slot>
+                      <slot>
+                        <Ind type="&psoa;iri">_wife</Ind>
+                        <Var>Wi</Var>
+                      </slot>
+                      <slot>
+                        <Ind type="&psoa;iri">_child</Ind>
+                        <Var>Ch</Var>
+                      </slot>
+                    </Atom>
+                  </formula>
+                </Exists>
+              </then>
+            </Implies>
+          </formula>
+        </Forall>
+      </sentence>
+      <sentence>
+        <Forall>
+          <declare>
+            <Var>Hu</Var>
+          </declare>
+          <declare>
+            <Var>Wi</Var>
+          </declare>
+          <declare>
+            <Var>Ch</Var>
+          </declare>
+          <formula>
+            <Implies>
+              <if>
+                <And>
+                  <formula>
+                    <Exists>
+                      <declare>
+                        <Var>obj2</Var>
+                      </declare>
+                      <formula>
+                        <Atom>
+                          <oid>
+                            <Var>obj2</Var>
+                          </oid>
+                          <op>
+                            <Rel type="&psoa;iri">_married</Rel>
+                          </op>
+                          <args>
+                            <Var>Hu</Var>
+                            <Var>Wi</Var>
+                          </args>
+                        </Atom>
+                      </formula>
+                    </Exists>
+                  </formula>
+                  <formula>
+                    <Exists>
+                      <declare>
+                        <Var>obj3</Var>
+                      </declare>
+                      <formula>
+                        <Atom>
+                          <oid>
+                            <Var>obj3</Var>
+                          </oid>
+                          <op>
+                            <Rel type="&psoa;iri">_kid</Rel>
+                          </op>
+                          <args>
+                            <Var>Wi</Var>
+                            <Var>Ch</Var>
+                          </args>
+                        </Atom>
+                      </formula>
+                    </Exists>
+                  </formula>
+                </And>
+              </if>
+              <then>
+                <Exists>
+                  <declare>
+                    <Var>obj1</Var>
+                  </declare>
+                  <formula>
+                    <Atom>
+                      <oid>
+                        <Var>obj1</Var>
+                      </oid>
+                      <op>
+                        <Rel type="&psoa;iri">_family</Rel>
+                      </op>
+                      <slot>
+                        <Ind type="&psoa;iri">_husb</Ind>
+                        <Var>Hu</Var>
+                      </slot>
+                      <slot>
+                        <Ind type="&psoa;iri">_wife</Ind>
+                        <Var>Wi</Var>
+                      </slot>
+                      <slot>
+                        <Ind type="&psoa;iri">_child</Ind>
+                        <Var>Ch</Var>
+                      </slot>
+                    </Atom>
+                  </formula>
+                </Exists>
+              </then>
+            </Implies>
+          </formula>
+        </Forall>
+      </sentence>
+      <sentence>
+        <Atom>
+          <oid>
+            <Ind type="&psoa;iri">_1</Ind>
+          </oid>
+          <op>
+            <Rel type="&psoa;iri">_married</Rel>
+          </op>
+          <args>
+            <Ind type="&psoa;iri">_Joe</Ind>
+            <Ind type="&psoa;iri">_Sue</Ind>
+          </args>
+        </Atom>
+      </sentence>
+      <sentence>
+        <Atom>
+          <oid>
+            <Ind type="&psoa;iri">_2</Ind>
+          </oid>
+          <op>
+            <Rel type="&psoa;iri">_kid</Rel>
+          </op>
+          <args>
+            <Ind type="&psoa;iri">_Sue</Ind>
+            <Ind type="&psoa;iri">_Pete</Ind>
+          </args>
+        </Atom>
+      </sentence>
+    </Group>
+  </payload>
+</Document>

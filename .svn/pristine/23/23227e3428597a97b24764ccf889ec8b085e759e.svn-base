@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE Document [
+  <!ENTITY psoa  "http://www.w3.org/2011/psoa#">
+  <!ENTITY xs   "http://www.w3.org/2001/XMLSchema#">
+  <!ENTITY rdf  "http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+]>
+
+<Document xmlns="&psoa;">
+  <directive>
+    <Prefix>
+      <name>cpt</name>
+      <expansion>http://eg.com/concepts#</expansion>
+    </Prefix>
+    <Prefix>
+      <name>mus</name>
+      <expansion>http://eg.com/museums#</expansion>
+    </Prefix>
+    <Prefix>
+      <name>func</name>
+      <expansion>http://www.w3.org/2007/rif-builtin-function#</expansion>
+    </Prefix>
+    <Prefix>
+      <name>xs</name>
+      <expansion>http://www.w3.org/2001/XMLSchema#</expansion>
+    </Prefix>
+</directive>  
+  <payload>
+   <Group>
+    <groupelement>
+     <Forall>
+      <declare>
+      <Var>cost</Var>
+      </declare>
+      <declare>
+      <Var>cost1</Var>
+      </declare>
+      <declare>
+      <Var>cost2</Var>
+      </declare>
+      <declare>
+      <Var>A</Var>
+      </declare>
+      <declare>
+      <Var>B</Var>
+      </declare>
+      <formula>
+    <Implies>
+       <if>
+     <And>
+     
+     <formula>
+     <Atom>
+      <Member>
+      <instance>
+       <Const type="&psoa;iri">cpt:shipment</Const>
+      </instance>
+      <class>
+       <Const type="&psoa;iri">Top</Const>
+      </class>
+      </Member>
+      <tuple>
+       <Var></Var>
+       <Var>cost1</Var>
+      </tuple>  
+      <slot>
+      <Const type="&psoa;iri">cpt:source</Const>
+       <Var>A</Var>
+      </slot>
+      <slot>
+      <Const type="&psoa;iri">cpt:dest</Const>
+       <Var>B</Var>
+      </slot>
+     </Atom>
+     </formula>
+     
+     <formula>
+     <Atom>
+      <Member>
+      <instance>
+       <Const type="&psoa;iri">cpt:shipment</Const>
+      </instance>
+      <class>
+       <Const type="&psoa;iri">Top</Const>
+      </class>
+      </Member>
+      <tuple>
+       <Var></Var>
+       <Var>cost2</Var>
+      </tuple>  
+      <slot>
+      <Const type="&psoa;iri">cpt:source</Const>
+       <Var>B</Var>
+      </slot>
+      <slot>
+      <Const type="&psoa;iri">cpt:dest</Const>
+       <Var>A</Var>
+      </slot>
+     </Atom>     
+     </formula>
+     
+     <formula>
+    <Equal>
+      <left>
+      <Var>cost</Var>
+      </left>
+      <right>
+       <External>
+       <content>
+        <Expr>
+        <Member>
+        <instance>
+         <Const type="&psoa;iri">func:numeric-add</Const>
+        </instance>
+        <class>
+         <Const type="&psoa;iri">Top</Const>
+        </class>
+        </Member>  
+	<tuple>
+       <Var>cost1</Var>
+       <Var>cost2</Var>
+      </tuple>  
+                        
+        </Expr>
+       </content>
+      </External>      
+      </right>
+     </Equal>
+
+     
+     </formula>
+
+     
+     </And>
+      </if>
+       <then>
+
+     <Atom>
+     <Member>
+      <instance>
+       <Const type="&psoa;iri">cpt:reciship</Const>
+      </instance>
+      <class>
+       <Const type="&psoa;iri">Top</Const>
+      </class>
+      </Member>
+      <tuple>
+       <Var>cost</Var>
+      </tuple>  
+      <slot>
+      <Const type="&psoa;iri">cpt:source</Const>
+       <Var>A</Var>
+      </slot>
+      <slot>
+      <Const type="&psoa;iri">cpt:dest</Const>
+       <Var>B</Var>
+      </slot>
+      
+     </Atom>
+
+
+        </then>
+      </Implies>
+      </formula>
+     </Forall>
+    </groupelement>
+    
+    <groupelement>
+      <Atom>
+      <Member>
+      <instance>
+       <Const type="&psoa;iri">shipment</Const>
+      </instance>
+      <class>
+       <Const type="&psoa;iri">Top</Const>
+      </class>
+      </Member>
+      <tuple>
+       <Const type="&psoa;iri">"PC"^^xs:string</Const>
+       <Const type="&psoa;iri">"47.5"^^xs:float</Const>
+      </tuple>  
+      <slot>
+      <Const type="&psoa;iri">cpt:source</Const>
+      <Const type="&psoa;iri">mus:BostonMoS</Const>
+      </slot>
+      <slot>
+      <Const type="&psoa;iri">cpt:dest</Const>
+      <Const type="&psoa;iri">mus:LondonSciM</Const>
+      </slot>
+     </Atom> 
+    </groupelement>
+    
+     <groupelement>
+      <Atom>
+      <Member>
+      <instance>
+       <Const type="&psoa;iri">shipment</Const>
+      </instance>
+      <class>
+       <Const type="&psoa;iri">Top</Const>
+      </class>
+      </Member>
+      <tuple>
+       <Const type="&psoa;iri">"PDA"^^xs:string</Const>
+       <Const type="&psoa;iri">"9.5"^^xs:float</Const>
+      </tuple>  
+      <slot>
+      <Const type="&psoa;iri">cpt:source</Const>
+      <Const type="&psoa;iri">mus:LondonSciM</Const>
+      </slot>
+      <slot>
+      <Const type="&psoa;iri">cpt:dest</Const>
+      <Const type="&psoa;iri">mus:BostonMoS</Const>
+      </slot>
+     </Atom> 
+    </groupelement>
+    
+    
+   </Group>
+  </payload>
+</Document>

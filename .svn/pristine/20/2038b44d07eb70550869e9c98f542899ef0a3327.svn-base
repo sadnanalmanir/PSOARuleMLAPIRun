@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE Document [
+  <!ENTITY psoa  "http://www.w3.org/2011/psoa#">
+  <!ENTITY xs   "http://www.w3.org/2001/XMLSchema#">
+  <!ENTITY rdf  "http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+]>
+
+<Document xmlns="&psoa;">
+  <payload>
+   <Group>
+    <groupelement>
+     <Forall>
+      <declare>
+       <Var>var1</Var>
+      </declare>
+      <declare>
+       <Var></Var>
+      </declare>
+      <declare>
+       <Var>var2</Var>
+      </declare>      
+      <formula>
+     <Atom>
+     <Member>
+      <instance>
+       <Const type="&psoa;iri">http://example.org/#b</Const>
+      </instance>
+      <class>
+       <Const type="&psoa;iri">http://example.org/#b</Const>
+      </class>
+      </Member>
+      <tuple>
+       <Var>vartup1</Var>
+       <Const type="&psoa;iri">http://example.org/#b</Const>
+      </tuple> 
+      <slot>
+       <Var>var5</Var>
+       <Var>var6</Var>
+      </slot>
+      <slot>
+       <Var>var7</Var>
+       <Var>var8</Var>
+      </slot>           
+     </Atom>
+     </formula>
+     </Forall>
+    </groupelement>
+   </Group>
+  </payload>
+</Document>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE Document [
+  <!ENTITY psoa  "http://www.w3.org/2011/psoa#">
+  <!ENTITY xs   "http://www.w3.org/2001/XMLSchema#">
+  <!ENTITY rdf  "http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+]>
+
+<!--here declared variables are not present inside the formula, so they won't be in presentation syntax-->
+<Document xmlns="&psoa;">
+  <payload>
+   <Group>
+    <groupelement>
+    <Implies>
+       <if>
+<Or>
+<formula>
+     <Exists>
+      <declare>
+      <Var>var1</Var>
+      </declare>
+      <declare>
+      <Var>var2</Var>
+      </declare>
+      <formula>
+      <Equal>
+       <left>
+        <Const type="&psoa;iri">http://example.org/#b</Const>
+      </left>
+      <right>
+       <Const type="&psoa;iri">http://example.org/#b</Const>
+      </right>
+      </Equal>
+      </formula>     
+      </Exists>
+</formula>
+<formula>
+     <Atom>
+     <Member>
+      <instance>
+       <Const type="&psoa;iri">http://example.org/#b</Const>
+      </instance>
+      <class>
+       <Const type="&psoa;iri">http://example.org/#b</Const>
+      </class>
+      </Member>
+      <tuple>
+       <Const type="&psoa;iri">http://example.org/#b</Const>
+       <Var>vartup2</Var>
+      </tuple>      
+     </Atom>
+</formula>
+</Or>
+      </if>
+       <then>
+     <Equal>
+      <left>
+       <Const type="&psoa;iri">http://example.org/#b</Const>
+      </left>
+      <right>
+       <Const type="&psoa;iri">http://example.org/#b</Const>
+      </right>
+      </Equal>     
+     </then>
+      </Implies>
+    </groupelement>
+   </Group>
+  </payload>
+</Document>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE Document [
+  <!ENTITY psoa  "http://www.w3.org/2011/psoa#">
+  <!ENTITY xs   "http://www.w3.org/2001/XMLSchema#">
+  <!ENTITY rdf  "http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+]>
+
+<Document xmlns="&psoa;">
+  <directive>
+    <Import>
+      <location>http://thisisalocation.com/loc1#
+    </location>
+      </Import>
+    <Import>
+      <location>http://thisisalocation.com/loc2#
+    </location>
+      </Import>
+    </directive>
+  <payload>
+   <Group>
+    <groupelement>
+     <Equal>
+      <left>
+      <External>
+       <content>
+        <Expr>
+     <Member>
+      <instance>
+       <Const type="&psoa;iri">http://example.org/#b</Const>
+      </instance>
+      <class>
+       <Const type="&psoa;iri">http://example.org/#b</Const>
+      </class>
+      </Member>                          
+        </Expr>
+       </content>
+      </External>
+      </left>
+      <right>
+       <Const type="&psoa;iri">http://example.org/#b</Const>
+      </right>
+     </Equal>
+    </groupelement>
+   </Group>
+  </payload>
+</Document>
