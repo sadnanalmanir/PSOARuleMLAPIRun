@@ -7,15 +7,15 @@ public class TranslationRequest {
     /*
      * Expects {document: ..., query: ..., transType: ...}
      */
-
+/*
     public enum TranslatorType {
 
         Direct, TPTPASO
     };
-
+*/
     private String document;
-    private String query;
-    private String transType;
+    //private String query;
+    //private String transType;
 
     public String getDocument() {
         return document;
@@ -24,7 +24,7 @@ public class TranslationRequest {
     public void setDocument(String psoaDocument) {
         this.document = psoaDocument;
     }
-
+    /*
     public String getQuery() {
         return query;
     }
@@ -32,7 +32,8 @@ public class TranslationRequest {
     public void setQuery(String psoaQuery) {
         this.query = psoaQuery;
     }
-
+    */
+/*
     public String getTransType() {
         return transType;
     }
@@ -44,4 +45,5 @@ public class TranslationRequest {
     public TranslatorType transType() {
         return Enum.valueOf(TranslatorType.class, transType);
     }
+    */
 }

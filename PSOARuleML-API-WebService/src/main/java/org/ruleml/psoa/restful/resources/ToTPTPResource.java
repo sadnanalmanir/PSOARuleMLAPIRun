@@ -31,7 +31,7 @@ public class ToTPTPResource {
 
         logger.info("inside @POST method");
         String kb = decode(req.getDocument());
-        String query = decode(req.getQuery());
+        //String query = decode(req.getQuery());
         /* only returning the kb for testing if the client can receive
          * it , hence the try/catch block is disabled here
          */

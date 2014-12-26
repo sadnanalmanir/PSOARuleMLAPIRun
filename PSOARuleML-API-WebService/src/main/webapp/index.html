@@ -1,127 +1,197 @@
-    <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-    <html>
-        <head>
-            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-            
-            <title>PSOA RuleML API</title>
-            
-            <link type="text/css" href="css/custom-theme/jquery-ui-1.8.20.custom.css" rel="Stylesheet" />
+<!DOCTYPE html>
 
-            <link rel="shortcut icon" href="http://jqueryui.com/jquery-wp-content/themes/jqueryui.com/i/favicon.ico">
-            <link rel="stylesheet" href="http://jqueryui.com/jquery-wp-content/themes/jquery/css/base.css?v=1">
-            <link rel="stylesheet" href="http://jqueryui.com/jquery-wp-content/themes/jqueryui.com/style.css">
-            <link rel="pingback" href="http://jqueryui.com/xmlrpc.php" />
-            <!--[if lt IE 7]><link rel="stylesheet" href="css/font-awesome-ie7.min.css"><![endif]-->
+<html>
+    <head>
 
-            <script src="http://jqueryui.com/jquery-wp-content/themes/jquery/js/modernizr.custom.2.6.2.min.js"></script>
-            <script src="http://jqueryui.com/jquery-wp-content/themes/jquery/js/plugins.js"></script>
-            
-            <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>            
-            <script type="text/javascript" src="js/jquery-ui-1.8.20.custom.min.js"></script>
-            
-            
-            <!-- List of testcases-->
-            <script type="text/javascript" src="js/testcases/single_tuple_psoa_term.js" ></script>
-            <script type="text/javascript" src="js/testcases/multi_slot_psoa_term.js" ></script>
-            <script type="text/javascript" src="js/testcases/multi_valued_slot.js" ></script>
-            <script type="text/javascript" src="js/testcases/psoa_terms_with_slots_and_tuples.js" ></script>
-            <script type="text/javascript" src="js/testcases/family.js" ></script>
-            <script type="text/javascript" src="js/testcases/family_variation.js" ></script>
-            <script type="text/javascript" src="js/testcases/rule_test_psoa_terms.js" ></script>            
-            <script type="text/javascript" src="js/testcases/rule_test_psoa_facts.js" ></script>            
-            <script type="text/javascript" src="js/testcases/inheritance.js" ></script>            
+        <!-- Website Title & Description for Search Engine purposes -->
+        <title>PSOA RuleML API</title>
+        <meta name="description" content="Learn how to code your first responsive website with the new Twitter Bootstrap 3.">
 
-            <script type="text/javascript" src="js/main.js" ></script>
+        <!-- Mobile viewport optimized -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-        </head>
-        <body>
-            <br/>    
-            <h1>&nbsp;PSOA RuleML API-based Syntax Converter</h1>
-            <H3>&nbsp;&nbsp;PSOA RuleML/XML Syntax to PSOA Presentation Syntax</H3>
-            <div id="tabs">
-                <ul>
-                    <li>
-                        <a href="#tab-1">PSOA Rulebase in RuleML/XML Syntax</a>
-                    </li>
-                    <li>
-                        <a href="#tab-2">PSOA Rulebase in Presentation Syntax</a>
-                    </li>
-                </ul>
-                <div id="tab-1">
-                    <textarea id="PSOAKB" rows="20" cols="80"></textarea>																												
+        <!-- Bootstrap CSS -->
+        <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="includes/css/bootstrap-glyphicons.css" rel="stylesheet">
 
-                    <!-- Links Right begin-->
-                    <div style = "clear: right; float: right; text-align: left;">
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="includes/css/styles.css">
 
-                        <ul>Select Rulebase
-                            <br />
-                            <div class="ui-button">
-                                <input id="testcase4_1Btn" type="button" value="Single-tuple psoa term" />
-                            </div>
-                            <br />
-                            <div class="ui-button">
-                                <input id="testcase4_2Btn" type="button" value="Multi-slot psoa term" />
-                            </div>
-                            <br />
-                            <div class="ui-button">
-                                <input id="testcase4_3Btn" type="button" value="Multi-valued Slot" />
-                            </div>
-                            <br />
-                            <div class="ui-button">
-                                <input id="testcase4_4Btn" type="button" value="Psoa terms with slots and tuples" />
-                            </div>
-                            <br />
-                            <div class="ui-button">
-                                <input id="testcase4_6Btn" type="button" value="Family" />
-                            </div>
-                            <br />
-                            <div class="ui-button">
-                                <input id="testcase4_7Btn" type="button" value="Family (Variation)" />
-                            </div>
-                            <br />
-                            <div class="ui-button">
-                                <input id="testcase4_8Btn" type="button" value="Rule Test - Psoa Terms" />
-                            </div>
-                            <br />
-                            <div class="ui-button">
-                                <input id="testcase4_9Btn" type="button" value="Rule Test - Psoa Facts" />
-                            </div>
-                            <br />
-                            <div class="ui-button">
-                                <input id="testcase4_15Btn" type="button" value="Inheritance" />
-                            </div>
-                    </div>
-                    <!-- Links right end-->
+        <!-- Include Modernizr in the head, before any other Javascript -->
+        <script src="includes/js/modernizr-2.6.2.min.js"></script>
 
-                    <br/>
-                    <div style="visibility:hidden">
-                        <input type="radio" name="translatorType" value="Direct" />
-                        Direct Translator
-                        <input type="radio" name="translatorType" value="TPTPASO" checked="checked" />
-                        TPTP-ASO-based Translator
-                        <br/>
-                    </div>
-                    <input id="transKBBtn" type="button" value="Convert to Presentation Syntax" />
-                    <input id="showSampleKBBtn" type="button" value="Sample Rulebase" />
-                    <input id="resetKBBtn" type="button" value="Reset" />
-                </div>
-
-                <div id="tab-2">
-                    <textarea id="tptpOutput" rows="18" cols="80"></textarea>
-                    <!--h3>Query</h3-->
-                    <!--textarea id="PSOAQuery" rows="1" cols="80"></textarea-->																												
+    </head>
 
 
+    <body>
+
+        <div class="container" id="main">
+
+            <div class="navbar navbar-fixed-top">
+                <div class="container">
+
+                    <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+                    <button class="navbar-toggle" data-target=".navbar-responsive-collapse" data-toggle="collapse" type="button">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                    <a class="navbar-brand" href="/"><img src="images/psoa-logo.png" alt="PSOA RuleML Logo"></a>
+
+                    <div class="nav-collapse collapse navbar-responsive-collapse">
+                        <ul class="nav navbar-nav">
+                            <li class="active">
+                                <a href="#">Home</a>
+                            </li>
+
+                            <li>
+                                <a href="getting-started.html">Getting Started</a>
+                            </li>
+                        </ul>
+                    </div><!-- end nav-collapse -->
+
+                </div><!-- end container -->
+            </div><!-- end navbar -->
+
+            <div class="row" id="moreInfo">
+                <div class="col-sm-8">
+                    <h3>PSOA RuleML API-based Synatax Converter</h3>
+                    <div class="tabbable">
+                        <ul class="nav nav-tabs"   id="tabs">
+                            <li class="active"><a href="#tab1" data-toggle="tab">PSOA Rulebase in RuleML/XML Syntax</a></li>
+                            <li><a href="#tab2" data-toggle="tab">PSOA Rulebase in Presentation Syntax</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="active tab-pane" id="tab1">
+                                <!--h4><span class="glyphicon glyphicon-map-marker"></span> Our Location <small>More like our favourite surf spot</small></h4-->
+
+                                <!--iframe width="100%" height="200" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.ca/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=waikiki+beach&amp;aq=&amp;sll=19.896766,-155.582782&amp;sspn=8.711424,11.854248&amp;ie=UTF8&amp;hq=&amp;hnear=Waikiki+Beach,+Honolulu,+Hawaii,+United+States&amp;t=m&amp;ll=21.277298,-157.8265&amp;spn=0.015996,0.036478&amp;z=14&amp;output=embed"></iframe-->
+                                <textarea class="form-control" id="PSOARuleMLXMLKB" rows="18"></textarea>
+                                <!--p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p-->								
+                                <div style="visibility:hidden">
+                                    <input type="radio" name="translatorType" value="Direct" />
+                                    Direct Translator
+                                    <input type="radio" name="translatorType" value="TPTPASO" checked="checked" />							
+                                </div>
+                                <!--input type="text" class="form-control" placeholder="Search this site..." id="searchInput"-->
+                                <!--button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button-->
+                                <input class="btn btn-success" id="transKBBtn" type="button" value="Convert to Presentation Syntax" />
+                                <!--button type="submit" class="btn btn-default">Convert to Presentation Syntax</button-->
+                                <input class="btn btn-info" id="showSampleKBBtn" type="button" value="Sample Rulebase" />
+                                <!--button type="submit" class="btn btn-default">Sample Rulebase</button-->    
+                                <input class="btn btn-warning" id="resetKBBtn" type="button" value="Reset" />
+                                <!--button type="submit" class="btn btn-default">Reset</button-->
+                            </div><!-- end tab-pane -->
+
+                            <div class="tab-pane" id="tab2">
+                                <!--h4>A Left Floated Picture <small>Using Placehold.it</small></h4-->
+
+                                <!--img src="http://placehold.it/140" class="thumbnail pull-left" alt="Placeholder image"-->
+
+                                <!--p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p-->
+
+                                <!--p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p-->
+                                <textarea class="form-control" id="PSOAPSKB" rows="18"></textarea>
+
+                            </div><!-- end tab-pane -->
+                        </div><!-- end tab-content -->
+                    </div><!-- end tabbable -->
+                </div><!-- end col-sm-6 -->
+
+                <div class="col-sm-4" id="listOfRulebases">
+                    <!--h3>PSOA RuleML/XML Rulebase</h3-->
+                    <!--p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p-->
+
+                    <h4>Select any PSOA RuleML/XML Rulebase</h4>
+                    <div class="list-group">
+                        <a href="#" class="list-group-item active" id="testcase4_1Btn">Single-tuple psoa term</a>
+                        <a href="#" class="list-group-item" id="testcase4_2Btn">Multi-slot psoa term</a>
+                        <a href="#" class="list-group-item" id="testcase4_3Btn">Multi-valued Slot</a>
+                        <a href="#" class="list-group-item" id="testcase4_4Btn">Psoa terms with slots and tuples</a>
+                        <a href="#" class="list-group-item" id="testcase4_6Btn">Family</a>
+                        <a href="#" class="list-group-item" id="testcase4_7Btn">Family (Variation)</a>
+                        <a href="#" class="list-group-item" id="testcase4_8Btn">Rule Test - Psoa Terms</a>
+                        <a href="#" class="list-group-item" id="testcase4_9Btn">Rule Test - Psoa Facts</a>
+                        <a href="#" class="list-group-item" id="testcase4_15Btn">Inheritance</a>
+                    </div><!-- list-group -->
+
+                    <!--h5>A small heading</h5>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p-->
+                </div><!-- end col-sm-6 -->
+            </div><!-- end moreInfo -->
+
+            <hr>
+
+        </div><!-- end container -->
+
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <h6>Copyright &copy; 2013 {name}</h6>
+                    </div><!-- end col-sm-2 -->
+
+                    <div class="col-sm-4">
+                        <h6>About Us</h6>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    </div><!-- end col-sm-4 -->
+
+                    <div class="col-sm-2">
+                        <h6>Navigation</h6>
+                        <ul class="unstyled">
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">Services</a></li>
+                            <li><a href="#">Links</a></li>
+                            <li><a href="#">Contact</a></li>
+                        </ul>
+                    </div><!-- end col-sm-2 -->
+
+                    <div class="col-sm-2">
+                        <h6>Follow Us</h6>
+                        <ul class="unstyled">
+                            <li><a href="#">Twitter</a></li>
+                            <li><a href="#">Facebook</a></li>
+                            <li><a href="#">Google Plus</a></li>
+                        </ul>
+                    </div><!-- end col-sm-2 -->
+
+                    <div class="col-sm-2">
+                        <h6>Coded with <span class="glyphicon glyphicon-heart"></span> by Brad</h6>
+                    </div><!-- end col-sm-2 -->
+                </div><!-- end row -->
+            </div><!-- end container -->
+        </footer>
 
 
 
 
 
-                    <!--br/-->
-                    <!--input id="transQueryBtn" type="button" value="Translate Query" /-->
-                    <!--input id="runQueryBtn" type="button" value="Execute" /-->
-                </div>
-            </div>
+        <!-- All Javascript at the bottom of the page for faster page loading -->
 
-        </body>
-    </html>
+        <!-- First try for the online version of jQuery-->
+        <script src="http://code.jquery.com/jquery.js"></script>
+
+        <!-- If no online access, fallback to our hardcoded version of jQuery -->
+        <script>window.jQuery || document.write('<script src="includes/js/jquery-1.8.2.min.js"><\/script>')</script>
+
+        <!-- Bootstrap JS -->
+        <script src="bootstrap/js/bootstrap.min.js"></script>
+
+        <!-- Custom JS -->
+        <script src="includes/js/testcases/samplepsoakb.js"></script>	
+        <script src="includes/js/script.js"></script>
+        <script src="includes/js/testcases/single_tuple_psoa_term.js"></script>
+        <script src="includes/js/testcases/multi_slot_psoa_term.js"></script>	
+        <script src="includes/js/testcases/multi_valued_slot.js"></script>	
+        <script src="includes/js/testcases/psoa_terms_with_slots_and_tuples.js"></script>	
+        <script src="includes/js/testcases/family.js"></script>	
+        <script src="includes/js/testcases/family_variation.js"></script>	
+        <script src="includes/js/testcases/rule_test_psoa_facts.js"></script>	
+        <script src="includes/js/testcases/rule_test_psoa_terms.js"></script>	
+        <script src="includes/js/testcases/inheritance.js"></script>	
+
+    </body>
+</html>
