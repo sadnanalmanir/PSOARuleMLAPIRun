@@ -81,10 +81,11 @@ public class ToTPTPResource {
             org.ruleml.psoa.parser.Parser p = new Parser();
             Document doc = (Document) p.parse(f, absSynFactory);
 
-            System.out.println(doc.toString(" "));
-            return doc.toString(" ");
+            System.out.println(doc.toString("  "));
+            return doc.toString("  ");
         } catch (Exception e) {
             e.printStackTrace();
+            kb = e.getMessage();
         }
 
         return kb;

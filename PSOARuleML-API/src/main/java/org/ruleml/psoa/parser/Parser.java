@@ -78,17 +78,16 @@ public class Parser {
 
 	}
 	
-	 /** @param file to be parsed
+ /** @param file to be parsed
      *   @param absSynFactory factory of abstract syntax objects
      *         to be used to create the parsed objects
      */
 	public AbstractSyntax.Document
 	parse(File file, AbstractSyntax absSynFactory)
 	throws java.lang.Exception{
-
-            
+		
 		try {
-			/*
+			
 			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 			DocumentBuilder db = dbf.newDocumentBuilder();
 			org.w3c.dom.Document d = db.parse(file);
@@ -115,14 +114,17 @@ public class Parser {
 
                  }
              }
-             */
+             
 
 			
 			
 			
 			
 			
-	Document doc = (Document) _unmarshaller.unmarshal(file);
+			
+			
+			
+			Document doc = (Document) _unmarshaller.unmarshal(file);
 			Directive directive = doc.getDirective();
 			Payload payload = doc.getPayload();
 			
@@ -964,15 +966,18 @@ private Term convert(Rel rel, AbstractSyntax absSynFactory) {
 			String unicodeStr = "";
 			// Rel is a constant with embedded type as "unicodestring"^^symspace
 			// <Const type="symspace">unicodestring</Const> 
-			if(str.contains("^^")){
-				String delimiter  = "\"";
-				String[] temp;
-				temp = str.split(delimiter);
-				unicodeStr = temp[1];
-				String symspaceStr = temp[2].substring(2);
-				return absSynFactory.createConst_Literal(unicodeStr, convert(symspaceStr, absSynFactory));
-			}else{
+			// if psoa;local then 
+			if(rel.getType().contains("local")){
 				return absSynFactory.createConst_Constshort(str);
+			}else{
+				String delimiter  = "#";
+				String[] temp;
+				temp = rel.getType().split(delimiter);
+				unicodeStr = str;
+				String symspaceStr = temp[1];
+			
+				symspaceStr = "xs:"+symspaceStr;
+				return absSynFactory.createConst_Literal(unicodeStr, convert(symspaceStr, absSynFactory));
 			}
 		}else{
 			throw new Error("Bad instance of Rel");
@@ -1036,41 +1041,31 @@ private Subclass convert(org.ruleml.psoa.parser.jaxb.Subclass subclass,
  *            parsed objects to create Constant
  * @return short constant or literal constant with type
  */
-private Term convert(Ind const1, AbstractSyntax absSynFactory) {
-	String symspace = "";
-	for (java.lang.Object obj : const1.getContent())		
+private Term convert(Ind ind, AbstractSyntax absSynFactory) {
+	//String symspace = "";
+	for (java.lang.Object obj : ind.getContent())		
 		if (obj instanceof String) {			
 			String str = (String) obj;
 			
-			if(!const1.getType().equals(""))
-				symspace = const1.getType();
+			//if(!const1.getType().equals(""))
+				//symspace = const1.getType();
 			
-			if (str.contains("^^")) {
+			String unicodeStr = "";
+			// Rel is a constant with embedded type as "unicodestring"^^symspace
+			// <Const type="symspace">unicodestring</Const> 
+			// if psoa;local then 
+			if(ind.getType().contains("local")){
+				return absSynFactory.createConst_Constshort(str);
+			}else{
+				String delimiter  = "#";
 				String[] temp;
-				/* delimiter */
-				String delimiter = "\"";
-				/*
-				 * given string will be split by the argument delimiter
-				 * provided.
-				 */
-				temp = str.split(delimiter);
-				/* print substrings */
-				// for(int i =0; i < temp.length ; i++)
-				// System.out.println("split "+(i+1) +": " +temp[i]);
-				String oldString = temp[2];
-				// String symspaceStr =
-				// oldString.toLowerCase().split("^^")[1];
-				String symspaceStr = oldString.substring(2);
-				String literalStr = temp[1];
-
-				return absSynFactory.createConst_Literal(literalStr,
-						convert(symspaceStr, absSynFactory));
-			} else {
-
-				//return absSynFactory.createConst_Constshort((String) obj);
-				return absSynFactory.createConst_Constshort((String) obj);
+				temp = ind.getType().split(delimiter);
+				unicodeStr = str;
+				String symspaceStr = temp[1];
+				symspaceStr = "xs:"+symspaceStr;
+				
+				return absSynFactory.createConst_Literal(unicodeStr, convert(symspaceStr, absSynFactory));
 			}
-
 		} else
 			throw new Error("Bad instance of Const");
 

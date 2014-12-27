@@ -47,6 +47,7 @@
 
                             <li>
                                 <a href="getting-started.html">Getting Started</a>
+                                <!--a href="../../../../PSOARuleML-API/target/site/apidocs/index.html">Java API Documentation</a-->
                             </li>
                         </ul>
                     </div><!-- end nav-collapse -->
@@ -71,11 +72,7 @@
                                 <!--p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                                 
                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p-->								
-                                <div style="visibility:hidden">
-                                    <input type="radio" name="translatorType" value="Direct" />
-                                    Direct Translator
-                                    <input type="radio" name="translatorType" value="TPTPASO" checked="checked" />							
-                                </div>
+                            
                                 <!--input type="text" class="form-control" placeholder="Search this site..." id="searchInput"-->
                                 <!--button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button-->
                                 <input class="btn btn-success" id="transKBBtn" type="button" value="Convert to Presentation Syntax" />
@@ -84,6 +81,12 @@
                                 <!--button type="submit" class="btn btn-default">Sample Rulebase</button-->    
                                 <input class="btn btn-warning" id="resetKBBtn" type="button" value="Reset" />
                                 <!--button type="submit" class="btn btn-default">Reset</button-->
+
+                                <div class="alert alert-danger alert-block fade in" id="errorAlert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">&times;</button>
+                                    <strong>Warning!</strong> Better check yourself, you're not looking too good.
+                                </div>
+
                             </div><!-- end tab-pane -->
 
                             <div class="tab-pane" id="tab2">
@@ -115,7 +118,11 @@
                         <a href="#" class="list-group-item" id="testcase4_7Btn">Family (Variation)</a>
                         <a href="#" class="list-group-item" id="testcase4_8Btn">Rule Test - Psoa Terms</a>
                         <a href="#" class="list-group-item" id="testcase4_9Btn">Rule Test - Psoa Facts</a>
-                        <a href="#" class="list-group-item" id="testcase4_15Btn">Inheritance</a>
+                        <a href="#" class="list-group-item" id="testcase4_11Btn">Multiple Entailment</a>
+                        <a href="#" class="list-group-item" id="testcase4_12Btn">Arbitrary Entailment</a>
+                        <a href="#" class="list-group-item" id="testcase4_15Btn">Inheritance</a>                        
+                        <a href="#" class="list-group-item" id="testcase4_17Btn">Constant and String Equality</a>
+
                     </div><!-- list-group -->
 
                     <!--h5>A small heading</h5>
@@ -127,17 +134,17 @@
 
         </div><!-- end container -->
 
-        <footer>
+        <!--footer>
             <div class="container">
                 <div class="row">
                     <div class="col-sm-2">
                         <h6>Copyright &copy; 2013 {name}</h6>
-                    </div><!-- end col-sm-2 -->
+                    </div>
 
                     <div class="col-sm-4">
                         <h6>About Us</h6>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                    </div><!-- end col-sm-4 -->
+                    </div>
 
                     <div class="col-sm-2">
                         <h6>Navigation</h6>
@@ -147,7 +154,7 @@
                             <li><a href="#">Links</a></li>
                             <li><a href="#">Contact</a></li>
                         </ul>
-                    </div><!-- end col-sm-2 -->
+                    </div>
 
                     <div class="col-sm-2">
                         <h6>Follow Us</h6>
@@ -156,14 +163,14 @@
                             <li><a href="#">Facebook</a></li>
                             <li><a href="#">Google Plus</a></li>
                         </ul>
-                    </div><!-- end col-sm-2 -->
+                    </div>
 
                     <div class="col-sm-2">
                         <h6>Coded with <span class="glyphicon glyphicon-heart"></span> by Brad</h6>
-                    </div><!-- end col-sm-2 -->
-                </div><!-- end row -->
-            </div><!-- end container -->
-        </footer>
+                    </div>
+                </div>
+            </div>
+        </footer-->
 
 
 
@@ -191,7 +198,10 @@
         <script src="includes/js/testcases/family_variation.js"></script>	
         <script src="includes/js/testcases/rule_test_psoa_facts.js"></script>	
         <script src="includes/js/testcases/rule_test_psoa_terms.js"></script>	
+        <script src="includes/js/testcases/multiple_entailment.js"></script>	
+        <script src="includes/js/testcases/arbitrary_entailment.js"></script>	
         <script src="includes/js/testcases/inheritance.js"></script>	
-
+        <script src="includes/js/testcases/constant_and_string_equality.js"></script>	
+        
     </body>
 </html>

@@ -827,7 +827,7 @@ public class DefaultAbstractSyntax implements AbstractSyntax {
 		}
 
 		public String toString(String indent) {
-			return indent + _lhs.toString("") + "=" + _rhs.toString("");
+			return indent + _lhs.toString("") + " = " + _rhs.toString("");
 		}
 
 		private AbstractSyntax.Term _lhs;
@@ -1189,7 +1189,7 @@ public class DefaultAbstractSyntax implements AbstractSyntax {
 		}
 
 		public String toString(String indent) {
-			return indent + "\"" + _literal + "\"" + "^^"
+			return _symspace.toString().equals("xs:string") ? indent + "\"" + _literal + "\"" : indent + "\"" + _literal + "\"" + "^^"
 					+ _symspace.toString(indent);
 		}
 
