@@ -1,9 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?><project>
   <modelVersion>4.0.0</modelVersion>
-  <groupId>PSOARuleML-API</groupId>
-  <artifactId>PSOARuleML-API</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <groupId>org.ruleml.psoa</groupId>
+  <artifactId>psoaruleml-api</artifactId>
+  <version>1.0</version>
   <packaging>jar</packaging>
+  <name>PSOARuleML-API</name>
+  <description>A Java API which uses JAXB library to create abstract syntax objects 
+      from the XML schemas based on PSOA RuleML/XML language and currently converts
+      the RuleML/XML syntax into PSOA Presetation Syntax.
+  </description>    
+  <licenses>
+      <license>
+          <name>GPLv3</name>
+          <url>http://www.gnu.org/licenses/gpl-3.0.html</url>
+      </license>
+  </licenses>
+  <url>http://psoa-rulemlapi.rhcloud.com/psoaxml2ps/</url>
+  <developers>
+      <developer>
+          <id>sadnanalmanir</id>
+          <name>Mohammad Sadnan Al Manir</name>
+          <email>sadnanalmanir@gmail.com</email>
+          <organization>University of New Brunswick, Saint John</organization>
+          <organizationUrl>http://www2.unb.ca/csas/</organizationUrl>
+      </developer>
+  </developers>
   <build>
     <plugins>
       <plugin>
@@ -15,12 +36,4 @@
       </plugin>
     </plugins>
   </build>
-  <dependencies>
-    <dependency>
-      <groupId>gnu.getopt</groupId>
-      <artifactId>java-getopt</artifactId>
-      <version>1.0.13</version>
-    </dependency>
-  </dependencies>
-    <name>PSOARuleML-API</name>
 </project>
