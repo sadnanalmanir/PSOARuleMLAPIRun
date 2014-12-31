@@ -34,7 +34,9 @@ import org.w3c.dom.DocumentType;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
-//import com.sun.org.apache.xerces.internal.parsers.DOMParser;
+import org.ruleml.psoa.vocab.Namespaces;
+import org.ruleml.psoa.vocab.PsoaDatatype;
+import org.ruleml.psoa.vocab.XMLSchemaDatatype;
 
 
 import org.ruleml.psoa.parser.jaxb.*;
@@ -49,14 +51,8 @@ public class Parser {
 		SchemaFactory schemaFactory = SchemaFactory.newInstance(javax.xml.XMLConstants.W3C_XML_SCHEMA_NS_URI);
 		//absolute path
 		//URL schemaURL = new File("./src/main/resources/PSOARule.xsd").toURI().toURL();
-		 
-                //---------------------------------------------------------
-                // apparently does not work here in netbeans, only in eclipse
-                //URL schemaURL = ClassLoader.getSystemResource("PSOARule.xsd");
-                URL schemaURL = this.getClass().getClassLoader().getResource("PSOARule.xsd");
-                //---------------------------------------------------------
-                
-                
+		 //URL schemaURL = ClassLoader.getSystemResource("PSOARule.xsd");
+		 URL schemaURL = this.getClass().getClassLoader().getResource("PSOARule.xsd");
 		//URL schemaURL = ClassLoader.getSystemClassLoader().getResource("PSOARule.xsd");
 		if(schemaFactory != null){
 			System.out.println("schemaFactory is not null "+ schemaURL);
@@ -78,7 +74,7 @@ public class Parser {
 
 	}
 	
- /** @param file to be parsed
+	 /** @param file to be parsed
      *   @param absSynFactory factory of abstract syntax objects
      *         to be used to create the parsed objects
      */
@@ -124,7 +120,7 @@ public class Parser {
 			
 			
 			
-			Document doc = (Document) _unmarshaller.unmarshal(file);
+			org.ruleml.psoa.parser.jaxb.Document doc = (org.ruleml.psoa.parser.jaxb.Document) _unmarshaller.unmarshal(file);
 			Directive directive = doc.getDirective();
 			Payload payload = doc.getPayload();
 			
@@ -954,30 +950,20 @@ private Psoa convert(Oid oid, Op op, AbstractSyntax absSynFactory) {
 
 
 private Term convert(Rel rel, AbstractSyntax absSynFactory) {
-	String symspace = "";
 	for(Object obj : rel.getContent()){
-		
-		if(obj instanceof String){
-			String str = (String)obj;
-			//if(!rel.getType().equals(""))
-			//{	symspace = rel.getType();
-			//System.out.println("reltype-----------------"+symspace);
-			//}
-			String unicodeStr = "";
-			// Rel is a constant with embedded type as "unicodestring"^^symspace
-			// <Const type="symspace">unicodestring</Const> 
-			// if psoa;local then 
-			if(rel.getType().contains("local")){
-				return absSynFactory.createConst_Constshort(str);
-			}else{
-				String delimiter  = "#";
-				String[] temp;
-				temp = rel.getType().split(delimiter);
-				unicodeStr = str;
-				String symspaceStr = temp[1];
-			
-				symspaceStr = "xs:"+symspaceStr;
-				return absSynFactory.createConst_Literal(unicodeStr, convert(symspaceStr, absSynFactory));
+		if (obj instanceof String) {			
+			String unicodeStr = (String) obj;			
+			// if the constant is of type psoa local
+			if(PsoaDatatype.existDatatype(rel.getType())){
+				return absSynFactory.createConst_Constshort(unicodeStr);
+			}// if the constant is any of the types i.e. string, integer
+			else if(XMLSchemaDatatype.existDatatype(rel.getType())){
+				String symspace;
+				symspace = XMLSchemaDatatype.getShortHandDatatype(rel.getType());
+				return absSynFactory.createConst_Literal(unicodeStr, convert(symspace, absSynFactory));
+			}			
+			else{
+				throw new Error("Datatype " + rel.getType() + " is not supported");
 			}
 		}else{
 			throw new Error("Bad instance of Rel");
@@ -1041,33 +1027,24 @@ private Subclass convert(org.ruleml.psoa.parser.jaxb.Subclass subclass,
  *            parsed objects to create Constant
  * @return short constant or literal constant with type
  */
-private Term convert(Ind ind, AbstractSyntax absSynFactory) {
-	//String symspace = "";
+private Term convert(Ind ind, AbstractSyntax absSynFactory) {	
 	for (java.lang.Object obj : ind.getContent())		
 		if (obj instanceof String) {			
-			String str = (String) obj;
-			
-			//if(!const1.getType().equals(""))
-				//symspace = const1.getType();
-			
-			String unicodeStr = "";
-			// Rel is a constant with embedded type as "unicodestring"^^symspace
-			// <Const type="symspace">unicodestring</Const> 
-			// if psoa;local then 
-			if(ind.getType().contains("local")){
-				return absSynFactory.createConst_Constshort(str);
-			}else{
-				String delimiter  = "#";
-				String[] temp;
-				temp = ind.getType().split(delimiter);
-				unicodeStr = str;
-				String symspaceStr = temp[1];
-				symspaceStr = "xs:"+symspaceStr;
-				
-				return absSynFactory.createConst_Literal(unicodeStr, convert(symspaceStr, absSynFactory));
+			String unicodeStr = (String) obj;			
+			// if the constant is of type psoa local
+			if(PsoaDatatype.existDatatype(ind.getType())){
+				return absSynFactory.createConst_Constshort(unicodeStr);
+			}// if the constant is any of the types i.e. string, integer
+			else if(XMLSchemaDatatype.existDatatype(ind.getType())){
+				String symspace;
+				symspace = XMLSchemaDatatype.getShortHandDatatype(ind.getType());
+				return absSynFactory.createConst_Literal(unicodeStr, convert(symspace, absSynFactory));
+			}			
+			else{
+				throw new Error("Datatype " + ind.getType() + " is not supported");
 			}
 		} else
-			throw new Error("Bad instance of Const");
+			throw new Error("Bad instance of Ind");
 
 	return null;
 }

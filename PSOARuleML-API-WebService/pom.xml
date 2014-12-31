@@ -26,9 +26,9 @@
             <version>3.0.10.Final</version>
         </dependency>
         <dependency>
-            <groupId>PSOARuleML-API</groupId>
-            <artifactId>PSOARuleML-API</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <groupId>org.ruleml.psoa</groupId>
+            <artifactId>psoaruleml-api</artifactId>
+            <version>1.0</version>
         </dependency>
         <dependency>
             <groupId>javax</groupId>

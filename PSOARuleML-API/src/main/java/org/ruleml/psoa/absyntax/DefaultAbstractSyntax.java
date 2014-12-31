@@ -1258,7 +1258,7 @@ public class DefaultAbstractSyntax implements AbstractSyntax {
 		}
 
 		public String toString(String indent) {
-			return indent + _name;
+			return indent + "_" + _name;
 		}
 
 		private String _name;

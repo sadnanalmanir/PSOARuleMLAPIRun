@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+
+        <!-- Website Title & Description for Search Engine purposes -->
+        <title>PSOA RuleML API</title>
+        <meta name="description" content="Learn how to code your first responsive website with the new Twitter Bootstrap 3.">
+
+        <!-- Mobile viewport optimized -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+        <!-- Bootstrap CSS -->
+        <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="includes/css/bootstrap-glyphicons.css" rel="stylesheet">
+
+        <!-- Prism CSS for syntax highlighting -->
+        <link href="includes/css/prism.css" rel="stylesheet">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="includes/css/styles.css">
+
+        <!-- Include Modernizr in the head, before any other Javascript -->
+        <script src="includes/js/modernizr-2.6.2.min.js"></script>
+
+    </head>
+
+
+    <body>
+
+        <div class="container" id="main">
+
+            <div class="navbar navbar-fixed-top">
+                <div class="container">
+
+                    <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+                    <button class="navbar-toggle" data-target=".navbar-responsive-collapse" data-toggle="collapse" type="button">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                    <a class="navbar-brand" href="/"><img src="images/psoa-logo.png" alt="PSOA RuleML Logo"></a>
+
+                    <div class="nav-collapse collapse navbar-responsive-collapse">
+                        <ul class="nav navbar-nav">
+                            <li>
+                                <a href="index.html">Home</a>
+                            </li>
+
+                            <li class="active">
+                                <a href="resources.html">Resources</a>
+                                <!--a href="../../../../PSOARuleML-API/target/site/apidocs/index.html">Java API Documentation</a-->
+                            </li>
+                        </ul>
+                    </div><!-- end nav-collapse -->
+
+                </div><!-- end container -->
+            </div><!-- end navbar -->
+
+	    <div class="row">
+            <div class="col-12">
+                <div class="well">
+                        <div class="page-header">
+                            <!--h1>Javadoc <small>A subheader for extra awesome.</small></h1>
+                        </div><!-- end page-header -->
+                        <h2>Javadoc</h2>
+                        <hr>
+                        <p><a href="http://sadnanalmanir.github.io/PSOARuleML-API/apidocs/index.html">Javadoc</a> for the PSOA RuleML API</p>
+                        <hr>
+                        <h2>Github repository</h2>
+                        <hr>
+                        <p><a href="https://github.com/sadnanalmanir/PSOARuleML-API">Github source</a> is available here</p>
+                        <hr>
+                        <h2>Jar download</h2>
+                        <hr>
+                        <p><a href="http://sourceforge.net/projects/psoarulemlapi/files/psoaruleml-api.jar/download">Download</a> the jar</p>
+                        <hr>
+                        <h2>How to use the API</h2>
+                        <hr>
+                        <p>
+<pre>
+<code class="language-java">
+DefaultAbstractSyntax factory = new DefaultAbstractSyntax();        
+try {
+      Parser parser = new Parser();
+      File psoaRulemlKB = new File("testcases/single_tuple_psoa_term.psoa");          
+      Document psoaPSKB = (Document) parser.parse(psoaRulemlKB, factory);            
+      System.out.println(psoaPSKB);            
+    } catch (Exception e) {     
+        e.printStackTrace();
+    }
+</code> 
+</pre>                        
+                        
+                        
+
+                        </p>
+                        <hr>
+                        <p>
+                        <pre>
+                            <code class="language-markup">
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!-- 
+    http://wiki.ruleml.org/index.php/PSOA_RuleML#Single-tuple_psoa_term 
+--&gt;
+
+&lt;!DOCTYPE Document [
+&lt;!ENTITY psoa  &quot;http://psoa.ruleml.org/lang/spec#&quot;&gt;
+&lt;!ENTITY xs   &quot;http://www.w3.org/2001/XMLSchema#&quot;&gt;
+&lt;!ENTITY rdf  &quot;http://www.w3.org/1999/02/22-rdf-syntax-ns#&quot;&gt;
+]&gt;
+&lt;Document xmlns=&quot;&amp;psoa;&quot;&gt;
+  &lt;payload&gt;
+    &lt;Group&gt;
+      &lt;sentence&gt;
+        &lt;Atom&gt;
+          &lt;oid&gt;
+            &lt;Ind type=&quot;&amp;psoa;local&quot;&gt;_o1&lt;/Ind&gt;
+          &lt;/oid&gt;
+          &lt;op&gt;
+            &lt;Rel type=&quot;&amp;psoa;local&quot;&gt;_p&lt;/Rel&gt;
+          &lt;/op&gt;
+        &lt;args&gt;
+            &lt;Ind type=&quot;&amp;psoa;local&quot;&gt;_a1&lt;/Ind&gt;
+            &lt;Ind type=&quot;&amp;psoa;local&quot;&gt;_a2&lt;/Ind&gt;
+          &lt;/args&gt;
+        &lt;/Atom&gt;
+      &lt;/sentence&gt;
+    &lt;/Group&gt;
+  &lt;/payload&gt;
+&lt;/Document&gt;
+    </code>
+</pre>
+    </p>
+    <p>
+        <pre>
+            <code class="language-markup">
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;xs:schema xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; 
+           xmlns=&quot;http://psoa.ruleml.org/lang/spec#&quot; 
+           targetNamespace=&quot;http://psoa.ruleml.org/lang/spec#&quot; 
+           elementFormDefault=&quot;qualified&quot; 
+           version=&quot;Id: PSOARule.xsd, v. 1.0, 2011-10-19&quot;&gt;
+  &lt;xs:annotation&gt;
+    &lt;xs:documentation&gt;
+      
+      Last updated: 2014-12-29
+
+    This is the tentative XML schema for the Rule Language as defined by
+    the PSOA RuleML Published at http://www.cs.unb.ca/~boley/papers/SemanticsPsoaRules.pdf
+
+    The schema is based on the following EBNF for the PSOA Rule Language:
+  
+  Document  ::= 'Document' '(' Base? Prefix* Import* Group? ')'
+  Base      ::= 'Base' '(' ANGLEBRACKIRI ')'
+  Prefix    ::= 'Prefix' '(' Name ANGLEBRACKIRI ')'
+  Import    ::= 'Import' '(' ANGLEBRACKIRI PROFILE? ')'
+  Group     ::= 'Group' '(' (RULE | Group)* ')'
+  RULE      ::= ('Forall' Var+ '(' CLAUSE ')') | CLAUSE
+  CLAUSE    ::= Implies | ATOMIC
+  Implies   ::= (HEAD | 'And' '(' HEAD* ')') ':-' FORMULA
+  HEAD      ::= ATOMIC | 'Exists' Var+ '(' ATOMIC ')'
+  PROFILE   ::= ANGLEBRACKIRI
+      
+    &lt;/xs:documentation&gt;
+  &lt;/xs:annotation&gt;
+  &lt;!-- The Rule Language includes the Condition Language from the same directory --&gt;
+  &lt;xs:include schemaLocation=&quot;PSOACond.xsd&quot;/&gt;
+  &lt;xs:element name=&quot;Document&quot;&gt;
+    &lt;!--
+  Document  ::= 'Document' '(' Base? Prefix* Import* Group? ')'
+    --&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:sequence&gt;
+        &lt;xs:element ref=&quot;directive&quot; minOccurs=&quot;0&quot; maxOccurs=&quot;1&quot;/&gt;
+        &lt;xs:element ref=&quot;payload&quot; minOccurs=&quot;0&quot; maxOccurs=&quot;1&quot;/&gt;
+      &lt;/xs:sequence&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+  &lt;xs:element name=&quot;directive&quot;&gt;
+    &lt;!--
+  Base and Prefix represented directly in XML
+    --&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:sequence&gt;
+        &lt;xs:element ref=&quot;Base&quot; minOccurs=&quot;0&quot; maxOccurs=&quot;1&quot;/&gt;
+        &lt;xs:element ref=&quot;Prefix&quot; minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;/&gt;
+        &lt;xs:element ref=&quot;Import&quot; minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;/&gt;
+      &lt;/xs:sequence&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+  &lt;xs:element name=&quot;payload&quot;&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:sequence&gt;
+        &lt;xs:element ref=&quot;Group&quot;/&gt;
+      &lt;/xs:sequence&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+  &lt;xs:element name=&quot;Base&quot;&gt;
+    &lt;!--
+  Base    ::= 'Base' '(' ANGLEBRACKIRI ')'
+    --&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:sequence&gt;
+        &lt;xs:element ref=&quot;absiri&quot;/&gt;
+      &lt;/xs:sequence&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+  &lt;xs:element name=&quot;absiri&quot; type=&quot;xs:anyURI&quot;/&gt;
+  &lt;xs:element name=&quot;Prefix&quot;&gt;
+    &lt;!--
+  Prefix    ::= 'Prefix' '(' Name ANGLEBRACKIRI ')'
+  Name   ::= UNICODESTRING
+    --&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:sequence&gt;
+        &lt;xs:element ref=&quot;name&quot;/&gt;
+        &lt;xs:element ref=&quot;expansion&quot;/&gt;
+      &lt;/xs:sequence&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+  &lt;xs:element name=&quot;name&quot; type=&quot;xs:anyURI&quot;/&gt;
+  &lt;xs:element name=&quot;expansion&quot; type=&quot;xs:anyURI&quot;/&gt;
+  &lt;xs:element name=&quot;Import&quot;&gt;
+    &lt;!--
+  Import    ::= IRIMETA? 'Import' '(' LOCATOR PROFILE? ')'
+  LOCATOR   ::= ANGLEBRACKIRI
+  PROFILE   ::= ANGLEBRACKIRI
+    --&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:sequence&gt;
+        &lt;xs:element ref=&quot;location&quot;/&gt;
+        &lt;xs:element ref=&quot;profile&quot; minOccurs=&quot;0&quot; maxOccurs=&quot;1&quot;/&gt;
+      &lt;/xs:sequence&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+  &lt;xs:element name=&quot;location&quot; type=&quot;xs:anyURI&quot;/&gt;
+  &lt;xs:element name=&quot;profile&quot; type=&quot;xs:anyURI&quot;/&gt;
+  &lt;xs:element name=&quot;Group&quot;&gt;
+    &lt;!--
+  Group     ::= 'Group' '(' (RULE | Group)* ')'
+    --&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:sequence&gt;
+        &lt;xs:element ref=&quot;sentence&quot; minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;/&gt;
+      &lt;/xs:sequence&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+  &lt;xs:element name=&quot;sentence&quot;&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:choice&gt;
+        &lt;xs:group ref=&quot;RULE&quot;/&gt;
+        &lt;xs:element ref=&quot;Group&quot;/&gt;
+      &lt;/xs:choice&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+  &lt;xs:group name=&quot;RULE&quot;&gt;
+    &lt;!--
+  RULE      ::= ('Forall' Var+ '(' CLAUSE ')') | CLAUSE
+    --&gt;
+    &lt;xs:choice&gt;
+      &lt;xs:element ref=&quot;Forall&quot;/&gt;
+      &lt;xs:group ref=&quot;CLAUSE&quot;/&gt;
+    &lt;/xs:choice&gt;
+  &lt;/xs:group&gt;
+  &lt;xs:element name=&quot;Forall&quot;&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:sequence&gt;
+        &lt;xs:element ref=&quot;declare&quot; minOccurs=&quot;1&quot; maxOccurs=&quot;unbounded&quot;/&gt;
+        &lt;!-- different from formula in And, Or and Exists --&gt;
+        &lt;xs:element name=&quot;formula&quot;&gt;
+          &lt;xs:complexType&gt;
+            &lt;xs:group ref=&quot;CLAUSE&quot;/&gt;
+          &lt;/xs:complexType&gt;
+        &lt;/xs:element&gt;
+      &lt;/xs:sequence&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+  &lt;xs:group name=&quot;CLAUSE&quot;&gt;
+    &lt;!--
+  CLAUSE   ::= Implies | ATOMIC
+    --&gt;
+    &lt;xs:choice&gt;
+      &lt;xs:element ref=&quot;Implies&quot;/&gt;
+      &lt;xs:group ref=&quot;ATOMIC&quot;/&gt;
+    &lt;/xs:choice&gt;
+  &lt;/xs:group&gt;
+  &lt;xs:element name=&quot;Implies&quot;&gt;
+    &lt;!--
+  Implies   ::= (HEAD | 'And' '(' HEAD* ')') ':-' FORMULA
+    --&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:sequence&gt;
+        &lt;xs:element ref=&quot;if&quot;/&gt;
+        &lt;xs:element ref=&quot;then&quot;/&gt;
+      &lt;/xs:sequence&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+  &lt;!--
+   FORMULA
+  --&gt;
+  &lt;xs:element name=&quot;if&quot;&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:sequence&gt;
+        &lt;xs:group ref=&quot;FORMULA&quot;/&gt;
+      &lt;/xs:sequence&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+  &lt;!--
+   (HEAD | 'And' '(' HEAD* ')')
+    --&gt;
+  &lt;xs:element name=&quot;then&quot;&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:choice&gt;
+        &lt;xs:group ref=&quot;HEAD&quot;/&gt;
+        &lt;xs:element name=&quot;And&quot; type=&quot;And-then.type&quot;/&gt;
+      &lt;/xs:choice&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+  &lt;!--
+   'And' '(' HEAD* ')'
+    --&gt;
+  &lt;xs:complexType name=&quot;And-then.type&quot;&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element name=&quot;formula&quot; type=&quot;formula-and-then.type&quot; minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;/&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:complexType name=&quot;formula-and-then.type&quot;&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:group ref=&quot;HEAD&quot;/&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;!--
+   HEAD
+    --&gt;
+  &lt;xs:group name=&quot;HEAD&quot;&gt;
+    &lt;!--
+  HEAD      ::= ('Exists' Var+ '(' ATOMIC ')') | ATOMIC   
+    --&gt;
+    &lt;xs:choice&gt;
+      &lt;xs:group ref=&quot;ATOMIC&quot;/&gt;
+      &lt;xs:element name=&quot;Exists&quot; type=&quot;Exists-then.type&quot;/&gt;
+    &lt;/xs:choice&gt;
+  &lt;/xs:group&gt;
+  &lt;!--
+  ('Exists' Var+ '(' ATOMIC ')')
+    --&gt;
+  &lt;xs:complexType name=&quot;Exists-then.type&quot;&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element ref=&quot;declare&quot; minOccurs=&quot;1&quot; maxOccurs=&quot;unbounded&quot;/&gt;
+      &lt;xs:element name=&quot;formula&quot; type=&quot;formula-exists-then.type&quot;/&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;!--
+  ATOMIC   
+    --&gt;
+  &lt;xs:complexType name=&quot;formula-exists-then.type&quot;&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:group ref=&quot;ATOMIC&quot;/&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+&lt;/xs:schema&gt;
+            </code>
+        </pre>
+    </p>
+
+    <p>
+        <pre>
+            <code class="language-markup">
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;xs:schema xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; 
+           xmlns=&quot;http://psoa.ruleml.org/lang/spec#&quot; 
+           targetNamespace=&quot;http://psoa.ruleml.org/lang/spec#&quot; 
+           elementFormDefault=&quot;qualified&quot; 
+           version=&quot;Id: PSOACond.xsd, v. 1.0, 2011-10-19&quot;&gt;
+  &lt;!--the xml.xsd is imported from web address, to load faster load it locally
+
+ &lt;xs:import namespace='http://www.w3.org/XML/1998/namespace'
+            schemaLocation='http://www.w3.org/2001/03/xml.xsd'/&gt; 
+
+
+--&gt;
+  &lt;xs:import namespace=&quot;http://www.w3.org/XML/1998/namespace&quot; schemaLocation=&quot;xml.xsd&quot;/&gt;
+  &lt;xs:annotation&gt;
+    &lt;xs:documentation&gt;
+
+      Last updated: 2014-12-29
+
+    This is the tentative XML schema for the Rule Language as defined by
+    the PSOA RuleML Published at http://www.cs.unb.ca/~boley/papers/SemanticsPsoaRules.pdf
+
+    
+    The schema is based on the following EBNF for the PSOA RuleML Condition Language:
+ 
+  FORMULA        ::= 'And' '(' FORMULA* ')' |
+                     'Or' '(' FORMULA* ')' |
+                     'Exists' Var+ '(' FORMULA ')' |
+                     ATOMIC |
+                     'External' '(' Atom ')'
+  ATOMIC         ::= Atom | Equal | Subclass
+  Atom           ::= PSOA
+  PSOA           ::= TERM '#' TERM '(' (TUPLE*  (TERM '-&amp;gt;' TERM)*) ')'
+  Equal          ::= TERM '=' TERM
+  Subclass       ::= TERM '##' TERM
+  TERM           ::= Const | Var | Expr | 'External' '(' Expr ')'
+  Expr           ::= PSOA
+  Const          ::= '&quot;' UNICODESTRING '&quot;^^' SYMSPACE | CONSTSHORT
+  Var            ::= '?' UNICODESTRING?
+  Name           ::= NCName | '&quot;' UNICODESTRING '&quot;'
+  SYMSPACE       ::= ANGLEBRACKIRI | CURIE
+ 
+ 
+    &lt;/xs:documentation&gt;
+  &lt;/xs:annotation&gt;
+  &lt;xs:group name=&quot;FORMULA&quot;&gt;
+    &lt;!--
+  FORMULA        ::= 'And' '(' FORMULA* ')' |
+                     'Or' '(' FORMULA* ')' |
+                     'Exists' Var+ '(' FORMULA ')' |
+                     ATOMIC |
+                     'External' '(' Atom ')'
+    --&gt;
+    &lt;xs:choice&gt;
+      &lt;xs:element ref=&quot;And&quot;/&gt;
+      &lt;xs:element ref=&quot;Or&quot;/&gt;
+      &lt;xs:element ref=&quot;Exists&quot;/&gt;
+      &lt;xs:group ref=&quot;ATOMIC&quot;/&gt;
+      &lt;xs:element name=&quot;External&quot; type=&quot;External-FORMULA.type&quot;/&gt;
+    &lt;/xs:choice&gt;
+  &lt;/xs:group&gt;
+  &lt;!--
+  'And' '(' FORMULA* ')'
+    --&gt;
+  &lt;xs:element name=&quot;And&quot;&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:sequence&gt;
+        &lt;xs:element ref=&quot;formula&quot; minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;/&gt;
+      &lt;/xs:sequence&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+  &lt;!--
+                     'Or' '(' FORMULA* ')' 
+    --&gt;
+  &lt;xs:element name=&quot;Or&quot;&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:sequence&gt;
+        &lt;xs:element ref=&quot;formula&quot; minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;/&gt;
+      &lt;/xs:sequence&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+  &lt;!--
+                     'Exists' Var+ '(' FORMULA ')' 
+      
+    --&gt;
+  &lt;xs:element name=&quot;Exists&quot;&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:sequence&gt;
+        &lt;xs:element ref=&quot;declare&quot; minOccurs=&quot;1&quot; maxOccurs=&quot;unbounded&quot;/&gt;
+        &lt;xs:element ref=&quot;formula&quot;/&gt;
+      &lt;/xs:sequence&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+  &lt;!--
+                     'External' '(' Atom ')'
+    --&gt;
+  &lt;xs:complexType name=&quot;External-FORMULA.type&quot;&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element name=&quot;content&quot; type=&quot;content-FORMULA.type&quot;/&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:complexType name=&quot;content-FORMULA.type&quot;&gt;
+    &lt;!-- sensitive to FORMULA (Atom) context--&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element ref=&quot;Atom&quot;/&gt;
+      &lt;!--can it be psoa instead of &quot;Atom&quot;--&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element name=&quot;formula&quot;&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:sequence&gt;
+        &lt;xs:group ref=&quot;FORMULA&quot;/&gt;
+      &lt;/xs:sequence&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+  &lt;xs:element name=&quot;declare&quot;&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:sequence&gt;
+        &lt;xs:element ref=&quot;Var&quot;/&gt;
+      &lt;/xs:sequence&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+  &lt;!--
+  ATOMIC         ::= Atom | Equal | Subclass
+  --&gt;
+  &lt;xs:group name=&quot;ATOMIC&quot;&gt;
+    &lt;xs:choice&gt;
+      &lt;xs:element ref=&quot;Atom&quot;/&gt;
+      &lt;!--Atom or psoa--&gt;
+      &lt;xs:element ref=&quot;Equal&quot;/&gt;
+      &lt;xs:element ref=&quot;Subclass&quot;/&gt;
+    &lt;/xs:choice&gt;
+  &lt;/xs:group&gt;
+  &lt;!--
+  Atom           ::= PSOA
+    --&gt;
+  &lt;xs:element name=&quot;Atom&quot;&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:sequence&gt;
+        &lt;xs:group ref=&quot;PSOA&quot;/&gt;
+      &lt;/xs:sequence&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+  &lt;!--
+    PSOA           ::= TERM '#' TERM '(' (TUPLE*  (TERM '-&gt;' TERM)*) ')'
+  --&gt;
+  &lt;xs:group name=&quot;PSOA&quot;&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element ref=&quot;oid&quot;/&gt;
+      &lt;xs:element ref=&quot;op&quot;/&gt;
+      &lt;xs:element ref=&quot;args&quot; minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;/&gt;
+      &lt;xs:element name=&quot;slot&quot; type=&quot;slot-PSOA.type&quot; minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;/&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:group&gt;
+  &lt;!--
+    TUPLE
+  --&gt;
+  &lt;xs:element name=&quot;args&quot;&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:sequence&gt;
+        &lt;xs:group ref=&quot;TERM&quot; minOccurs=&quot;1&quot; maxOccurs=&quot;unbounded&quot;/&gt;
+      &lt;/xs:sequence&gt;
+      &lt;xs:attribute name=&quot;ordered&quot; type=&quot;xs:string&quot; fixed=&quot;yes&quot;/&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+  &lt;!--
+    TERM '-&gt;' TERM
+  --&gt;
+  &lt;xs:complexType name=&quot;slot-PSOA.type&quot;&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:group ref=&quot;TERM&quot;/&gt;
+      &lt;xs:group ref=&quot;TERM&quot;/&gt;
+    &lt;/xs:sequence&gt;
+    &lt;xs:attribute name=&quot;ordered&quot; type=&quot;xs:string&quot; fixed=&quot;yes&quot;/&gt;
+  &lt;/xs:complexType&gt;
+  &lt;!--
+    PSOA           ::= TERM '#' TERM '(' (TUPLE*  (TERM '-&gt;' TERM)*) ')'
+    PSOA           ::= oid  '#' TERM '(' (TUPLE*  (TERM '-&gt;' TERM)*) ')'
+  --&gt;
+  &lt;xs:element name=&quot;oid&quot;&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:sequence&gt;
+        &lt;xs:group ref=&quot;TERM&quot;/&gt;
+      &lt;/xs:sequence&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+  &lt;!--
+    PSOA           ::= TERM '#' TERM '(' (TUPLE*  (TERM '-&gt;' TERM)*) ')'
+    PSOA           ::= TERM '#' op   '(' (TUPLE*  (TERM '-&gt;' TERM)*) ')'
+  --&gt;
+  &lt;xs:element name=&quot;op&quot;&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:sequence&gt;
+        &lt;xs:group ref=&quot;TERM&quot;/&gt;
+      &lt;/xs:sequence&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+  &lt;!--
+  Equal          ::= TERM '=' TERM
+  Equal          ::= left '=' right
+--&gt;
+  &lt;xs:element name=&quot;Equal&quot;&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:sequence&gt;
+        &lt;xs:element ref=&quot;left&quot;/&gt;
+        &lt;xs:element ref=&quot;right&quot;/&gt;
+      &lt;/xs:sequence&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+  &lt;!--
+  left
+--&gt;
+  &lt;xs:element name=&quot;left&quot;&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:sequence&gt;
+        &lt;xs:group ref=&quot;TERM&quot;/&gt;
+      &lt;/xs:sequence&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+  &lt;!--
+  right
+--&gt;
+  &lt;xs:element name=&quot;right&quot;&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:sequence&gt;
+        &lt;xs:group ref=&quot;TERM&quot;/&gt;
+      &lt;/xs:sequence&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+  &lt;!--
+  Subclass       ::= TERM '##' TERM
+  Subclass       ::= sub  '##' super
+    --&gt;
+  &lt;xs:element name=&quot;Subclass&quot;&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:sequence&gt;
+        &lt;xs:element ref=&quot;sub&quot;/&gt;
+        &lt;xs:element ref=&quot;super&quot;/&gt;
+      &lt;/xs:sequence&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+  &lt;!--
+  sub
+    --&gt;
+  &lt;xs:element name=&quot;sub&quot;&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:sequence&gt;
+        &lt;xs:group ref=&quot;TERM&quot;/&gt;
+      &lt;/xs:sequence&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+  &lt;!--
+  super
+    --&gt;
+  &lt;xs:element name=&quot;super&quot;&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:sequence&gt;
+        &lt;xs:group ref=&quot;TERM&quot;/&gt;
+      &lt;/xs:sequence&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+  &lt;!--    
+Original:   
+TERM           ::= Const | Var | Expr | 'External' '(' Expr ')'
+Updated: All constants are either typed Ind or typed Rel 
+         Rel is only under op in an Atom, Ind is everywhere else
+TERM           ::= Ind | Rel | Var | Expr | 'External' '(' Expr ')'       
+
+--&gt;
+  &lt;xs:group name=&quot;TERM&quot;&gt;
+    &lt;xs:choice&gt;
+      &lt;xs:element ref=&quot;Ind&quot;/&gt;
+      &lt;xs:element ref=&quot;Rel&quot;/&gt;
+      &lt;xs:element ref=&quot;Var&quot;/&gt;
+      &lt;xs:element ref=&quot;Expr&quot;/&gt;
+      &lt;xs:element name=&quot;External&quot; type=&quot;External-TERM.type&quot;/&gt;
+    &lt;/xs:choice&gt;
+  &lt;/xs:group&gt;
+  &lt;xs:complexType name=&quot;External-TERM.type&quot;&gt;
+    &lt;!-- sensitive to TERM (Expr) context--&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element name=&quot;content&quot; type=&quot;content-TERM.type&quot;/&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:complexType name=&quot;content-TERM.type&quot;&gt;
+    &lt;!-- sensitive to TERM (Expr) context--&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element ref=&quot;Expr&quot;/&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;!--
+  Expr           ::= PSOA
+    --&gt;
+  &lt;xs:element name=&quot;Expr&quot;&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:sequence&gt;
+        &lt;xs:group ref=&quot;PSOA&quot;/&gt;
+      &lt;/xs:sequence&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+  &lt;xs:element name=&quot;Ind&quot;&gt;
+    &lt;xs:complexType mixed=&quot;true&quot;&gt;
+      &lt;xs:sequence&gt;
+        &lt;xs:group ref=&quot;IRIMETA&quot; minOccurs=&quot;0&quot; maxOccurs=&quot;1&quot;/&gt;
+      &lt;/xs:sequence&gt;
+      &lt;xs:attribute name=&quot;type&quot; type=&quot;xs:anyURI&quot; use=&quot;required&quot;/&gt;
+      &lt;!--xs:attribute ref=&quot;xml:lang&quot;/--&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+  &lt;xs:element name=&quot;Rel&quot;&gt;
+    &lt;xs:complexType mixed=&quot;true&quot;&gt;
+      &lt;xs:sequence&gt;
+        &lt;xs:group ref=&quot;IRIMETA&quot; minOccurs=&quot;0&quot; maxOccurs=&quot;1&quot;/&gt;
+      &lt;/xs:sequence&gt;
+      &lt;xs:attribute name=&quot;type&quot; type=&quot;xs:anyURI&quot; use=&quot;required&quot;/&gt;
+      &lt;!--xs:attribute ref=&quot;xml:lang&quot;/--&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+  &lt;xs:element name=&quot;Var&quot;&gt;
+    &lt;!--
+  Var            ::= '?' UNICODESTRING
+    --&gt;
+    &lt;xs:complexType mixed=&quot;true&quot;&gt;
+      &lt;xs:sequence&gt;
+        &lt;xs:group ref=&quot;IRIMETA&quot; minOccurs=&quot;0&quot; maxOccurs=&quot;1&quot;/&gt;
+      &lt;/xs:sequence&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+  &lt;xs:group name=&quot;IRIMETA&quot;&gt;
+    &lt;!--
+  IRIMETA   ::= '(*' IRICONST? (Frame | 'And' '(' Frame* ')')? '*)'
+    --&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element ref=&quot;id&quot; minOccurs=&quot;0&quot; maxOccurs=&quot;1&quot;/&gt;
+      &lt;xs:element ref=&quot;meta&quot; minOccurs=&quot;0&quot; maxOccurs=&quot;1&quot;/&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:group&gt;
+  &lt;xs:element name=&quot;id&quot;&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:sequence&gt;
+        &lt;xs:element name=&quot;Ind&quot; type=&quot;IRICONST.type&quot;/&gt;
+      &lt;/xs:sequence&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+  &lt;xs:element name=&quot;meta&quot;&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:sequence&gt;
+        &lt;xs:element name=&quot;And&quot; type=&quot;And-meta.type&quot;/&gt;
+      &lt;/xs:sequence&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+  &lt;xs:complexType name=&quot;And-meta.type&quot;&gt;
+    &lt;!-- sensitive to meta (Frame) context--&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element name=&quot;formula&quot; minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;/&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:complexType name=&quot;IRICONST.type&quot; mixed=&quot;true&quot;&gt;
+    &lt;!-- sensitive to location/id context--&gt;
+    &lt;xs:sequence/&gt;
+    &lt;xs:attribute name=&quot;type&quot; type=&quot;xs:anyURI&quot; use=&quot;required&quot; fixed=&quot;http://psoa.ruleml.org/lang/spec#iri&quot;/&gt;
+  &lt;/xs:complexType&gt;
+&lt;/xs:schema&gt;
+            </code>
+        </pre>
+    </p>
+
+    <!--p class="lead">Some solid leading copy will help get your users engaged. Use this area to come up with something real nice. Know what I'm sayin?</p-->
+
+    </div><!-- end well -->
+    </div>
+	    </div>
+
+        </div><!-- end container -->
+
+
+        <!-- All Javascript at the bottom of the page for faster page loading -->
+
+        <!-- First try for the online version of jQuery-->
+        <script src="http://code.jquery.com/jquery.js"></script>
+
+        <!-- If no online access, fallback to our hardcoded version of jQuery -->
+        <script>window.jQuery || document.write('<script src="includes/js/jquery-1.8.2.min.js"><\/script>')</script>
+
+        <!-- Bootstrap JS -->
+        <script src="bootstrap/js/bootstrap.min.js"></script>
+
+        <!-- Prism JS -->
+        <script src="includes/js/prism.js"></script>        
+    
+    </body>
+</html>

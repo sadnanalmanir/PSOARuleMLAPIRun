@@ -110,6 +110,11 @@ $(document).ready(function() {
         // enable the first tab (index starting at 0)
         $('#tabs li:eq(0) a').tab('show');
     });
+    $("#testcase4_25Btn").click(function() {
+        $("#PSOARuleMLXMLKB").val(Example4_25);
+        // enable the first tab (index starting at 0)
+        $('#tabs li:eq(0) a').tab('show');
+    });
     // highlight the group PSOA RuleML/XML rulebase item  when selected
     $('.list-group-item').on('click', function(e) {
         var previous = $(this).closest(".list-group").children(".active");

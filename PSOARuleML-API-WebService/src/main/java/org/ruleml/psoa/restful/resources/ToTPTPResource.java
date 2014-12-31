@@ -31,6 +31,7 @@ public class ToTPTPResource {
 
         logger.info("inside @POST method");
         String kb = decode(req.getDocument());
+        
         //String query = decode(req.getQuery());
         /* only returning the kb for testing if the client can receive
          * it , hence the try/catch block is disabled here
@@ -79,7 +80,7 @@ public class ToTPTPResource {
 
             //org.ruleml.psoa.parser
             org.ruleml.psoa.parser.Parser p = new Parser();
-            Document doc = (Document) p.parse(f, absSynFactory);
+            org.ruleml.psoa.absyntax.DefaultAbstractSyntax.Document doc = (org.ruleml.psoa.absyntax.DefaultAbstractSyntax.Document) p.parse(f, absSynFactory);
 
             System.out.println(doc.toString("  "));
             return doc.toString("  ");
