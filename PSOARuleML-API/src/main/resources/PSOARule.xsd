@@ -35,7 +35,7 @@
     -->
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="directive" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="directive" minOccurs="0" maxOccurs="unbounded"/>
         <xs:element ref="payload" minOccurs="0" maxOccurs="1"/>
       </xs:sequence>
     </xs:complexType>
@@ -45,10 +45,8 @@
   Base and Prefix represented directly in XML
     -->
     <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="Base" minOccurs="0" maxOccurs="1"/>
-        <xs:element ref="Prefix" minOccurs="0" maxOccurs="unbounded"/>
-        <xs:element ref="Import" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:sequence>        
+        <xs:element ref="Import"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -59,31 +57,7 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="Base">
-    <!--
-  Base    ::= 'Base' '(' ANGLEBRACKIRI ')'
-    -->
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="absiri"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="absiri" type="xs:anyURI"/>
-  <xs:element name="Prefix">
-    <!--
-  Prefix    ::= 'Prefix' '(' Name ANGLEBRACKIRI ')'
-  Name   ::= UNICODESTRING
-    -->
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="name"/>
-        <xs:element ref="expansion"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="name" type="xs:anyURI"/>
-  <xs:element name="expansion" type="xs:anyURI"/>
+
   <xs:element name="Import">
     <!--
   Import    ::= IRIMETA? 'Import' '(' LOCATOR PROFILE? ')'
@@ -97,8 +71,11 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+
   <xs:element name="location" type="xs:anyURI"/>
+
   <xs:element name="profile" type="xs:anyURI"/>
+
   <xs:element name="Group">
     <!--
   Group     ::= 'Group' '(' (RULE | Group)* ')'
