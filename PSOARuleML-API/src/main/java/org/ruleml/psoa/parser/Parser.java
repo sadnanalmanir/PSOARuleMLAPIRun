@@ -50,30 +50,10 @@ public class Parser {
 		_unmarshaller = jc.createUnmarshaller();
 		SchemaFactory schemaFactory = SchemaFactory
 				.newInstance(javax.xml.XMLConstants.W3C_XML_SCHEMA_NS_URI);
-		// absolute path
-		// URL schemaURL = new
-		// File("./src/main/resources/PSOARule.xsd").toURI().toURL();
-		// URL schemaURL = ClassLoader.getSystemResource("PSOARule.xsd");
 		URL schemaURL = this.getClass().getClassLoader()
 				.getResource("PSOARule.xsd");
-		// URL schemaURL =
-		// ClassLoader.getSystemClassLoader().getResource("PSOARule.xsd");
-		if (schemaFactory != null) {
-			System.out.println("schemaFactory is not null " + schemaURL);
-
-		}
-
-		long startTime = System.currentTimeMillis();
-
-		// taking too much time to create new schema
 		Schema schema = schemaFactory.newSchema(schemaURL);
-		long endTime = System.currentTimeMillis();
-
-		System.out.println("creating new schema That took "
-				+ (endTime - startTime) + " milliseconds");
-
 		_unmarshaller.setSchema(schema);
-
 	}
 
 	/**
@@ -87,34 +67,6 @@ public class Parser {
 			throws java.lang.Exception {
 
 		try {
-
-			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-			DocumentBuilder db = dbf.newDocumentBuilder();
-			org.w3c.dom.Document d = db.parse(file);
-			DocumentType dt = d.getDoctype();
-
-			NamedNodeMap nnm = dt.getEntities();
-			Node entity = nnm.item(0);
-			System.out.println(entity);
-
-			String wholedoc = dt.getInternalSubset();
-			System.out.println(wholedoc);
-
-			NamedNodeMap entities = dt.getEntities();
-			if (entities != null) {
-				entity = entities.getNamedItem("instance");
-				if (entity != null) {
-					System.out.println("ENTITY book=" + entity.getNodeValue());
-					Node child = entity.getFirstChild();
-					while (child != null) {
-						System.out.println("==>child: '" + child.getNodeName()
-								+ "' " + child.getNodeValue());
-						child = child.getNextSibling();
-					}
-
-				}
-			}
-
 			Document doc = (Document) _unmarshaller.unmarshal(file);
 			List<Directive> directive = doc.getDirective();
 			Payload payload = doc.getPayload();
@@ -130,7 +82,6 @@ public class Parser {
 											absSynFactory),
 									(Group) convert(topLevelGroup,
 											absSynFactory));
-
 				}
 			} else {
 

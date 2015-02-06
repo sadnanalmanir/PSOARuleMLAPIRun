@@ -96,6 +96,8 @@ try {
                         
 
                         </p>
+                        <hr>                        
+                        <h2>Sample PSOA RuleML/XML Rulebase</h2>
                         <hr>
                         <p>
                         <pre>
@@ -133,6 +135,8 @@ try {
     </code>
 </pre>
     </p>
+    <h1>XML Schema for PSOA RuleML/XML</h1>
+                        <h2>Rule Language</h2>
     <p>
         <pre>
             <code class="language-markup">
@@ -173,7 +177,7 @@ try {
     --&gt;
     &lt;xs:complexType&gt;
       &lt;xs:sequence&gt;
-        &lt;xs:element ref=&quot;directive&quot; minOccurs=&quot;0&quot; maxOccurs=&quot;1&quot;/&gt;
+        &lt;xs:element ref=&quot;directive&quot; minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;/&gt;
         &lt;xs:element ref=&quot;payload&quot; minOccurs=&quot;0&quot; maxOccurs=&quot;1&quot;/&gt;
       &lt;/xs:sequence&gt;
     &lt;/xs:complexType&gt;
@@ -184,9 +188,7 @@ try {
     --&gt;
     &lt;xs:complexType&gt;
       &lt;xs:sequence&gt;
-        &lt;xs:element ref=&quot;Base&quot; minOccurs=&quot;0&quot; maxOccurs=&quot;1&quot;/&gt;
-        &lt;xs:element ref=&quot;Prefix&quot; minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;/&gt;
-        &lt;xs:element ref=&quot;Import&quot; minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;/&gt;
+        &lt;xs:element ref=&quot;Import&quot;/&gt;
       &lt;/xs:sequence&gt;
     &lt;/xs:complexType&gt;
   &lt;/xs:element&gt;
@@ -197,31 +199,6 @@ try {
       &lt;/xs:sequence&gt;
     &lt;/xs:complexType&gt;
   &lt;/xs:element&gt;
-  &lt;xs:element name=&quot;Base&quot;&gt;
-    &lt;!--
-  Base    ::= 'Base' '(' ANGLEBRACKIRI ')'
-    --&gt;
-    &lt;xs:complexType&gt;
-      &lt;xs:sequence&gt;
-        &lt;xs:element ref=&quot;absiri&quot;/&gt;
-      &lt;/xs:sequence&gt;
-    &lt;/xs:complexType&gt;
-  &lt;/xs:element&gt;
-  &lt;xs:element name=&quot;absiri&quot; type=&quot;xs:anyURI&quot;/&gt;
-  &lt;xs:element name=&quot;Prefix&quot;&gt;
-    &lt;!--
-  Prefix    ::= 'Prefix' '(' Name ANGLEBRACKIRI ')'
-  Name   ::= UNICODESTRING
-    --&gt;
-    &lt;xs:complexType&gt;
-      &lt;xs:sequence&gt;
-        &lt;xs:element ref=&quot;name&quot;/&gt;
-        &lt;xs:element ref=&quot;expansion&quot;/&gt;
-      &lt;/xs:sequence&gt;
-    &lt;/xs:complexType&gt;
-  &lt;/xs:element&gt;
-  &lt;xs:element name=&quot;name&quot; type=&quot;xs:anyURI&quot;/&gt;
-  &lt;xs:element name=&quot;expansion&quot; type=&quot;xs:anyURI&quot;/&gt;
   &lt;xs:element name=&quot;Import&quot;&gt;
     &lt;!--
   Import    ::= IRIMETA? 'Import' '(' LOCATOR PROFILE? ')'
@@ -364,7 +341,8 @@ try {
             </code>
         </pre>
     </p>
-
+    <H2>Condition Language</H2>
+    <hr>
     <p>
         <pre>
             <code class="language-markup">
@@ -373,15 +351,10 @@ try {
            xmlns=&quot;http://psoa.ruleml.org/lang/spec#&quot; 
            targetNamespace=&quot;http://psoa.ruleml.org/lang/spec#&quot; 
            elementFormDefault=&quot;qualified&quot; 
-           version=&quot;Id: PSOACond.xsd, v. 1.0, 2011-10-19&quot;&gt;
-  &lt;!--the xml.xsd is imported from web address, to load faster load it locally
-
- &lt;xs:import namespace='http://www.w3.org/XML/1998/namespace'
-            schemaLocation='http://www.w3.org/2001/03/xml.xsd'/&gt; 
-
-
---&gt;
+           version=&quot;Id: PSOACond.xsd, v. 1.0, 2011-10-19, &quot;&gt;
+  
   &lt;xs:import namespace=&quot;http://www.w3.org/XML/1998/namespace&quot; schemaLocation=&quot;xml.xsd&quot;/&gt;
+  
   &lt;xs:annotation&gt;
     &lt;xs:documentation&gt;
 
@@ -389,7 +362,6 @@ try {
 
     This is the tentative XML schema for the Rule Language as defined by
     the PSOA RuleML Published at http://www.cs.unb.ca/~boley/papers/SemanticsPsoaRules.pdf
-
     
     The schema is based on the following EBNF for the PSOA RuleML Condition Language:
  
