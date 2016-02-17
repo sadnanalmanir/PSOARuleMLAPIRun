@@ -9,7 +9,7 @@ package org.ruleml.psoa.vocab;
  */
 public enum PsoaDatatype {
 
-	LOCAL("local");
+	LOCAL("local"),GLOBAL("global");
 	
 	private String uri;
 	private String type;

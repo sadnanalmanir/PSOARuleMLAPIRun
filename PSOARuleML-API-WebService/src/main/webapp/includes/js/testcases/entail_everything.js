@@ -1,0 +1,42 @@
+/* 
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+var Example4_10 = ['<?xml version=\"1.0" encoding=\"UTF-8"?>',
+'',
+'<!-- ',
+'    http://wiki.ruleml.org/index.php/PSOA_RuleML#Entail_Everything_.28TBD.29',
+'-->',
+'',
+'<!DOCTYPE Document [',
+'<!ENTITY ex  "http://example.org/example#">',
+'<!ENTITY psoa  "http://psoa.ruleml.org/lang/spec#\">',
+'<!ENTITY xs   "http://www.w3.org/2001/XMLSchema#\">',
+'<!ENTITY rdf  "http://www.w3.org/1999/02/22-rdf-syntax-ns#\">',
+']>',
+'',
+'<Document xmlns="&psoa;">',
+'  <payload>',
+'    <Group>',
+'      <sentence>',
+'        <Forall>',
+'          <declare>',
+'            <Var>x</Var>',
+'          </declare>',
+'          <formula>',
+'            <Atom>                    ',
+'              <op>',
+'                <Rel type="&psoa;local">A</Rel>',
+'              </op>',
+'              <Tuple>',
+'                <Var>x</Var>',
+'              </Tuple>',
+'            </Atom>                    ',
+'          </formula>',
+'        </Forall>',
+'      </sentence>',
+'    </Group>',
+'  </payload>',
+'</Document>'].join('\n');
+

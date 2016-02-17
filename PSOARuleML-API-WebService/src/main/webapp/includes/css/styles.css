@@ -56,7 +56,12 @@ body {
 }
 
 #listOfRulebases {
-	margin-top: 55px;	
+	margin-top: 55px;	        
+}
+
+#collectionOfPSOARuleMLExamples {
+        max-height: 400px;
+        overflow-y: scroll;
 }
 
 ul.unstyled {

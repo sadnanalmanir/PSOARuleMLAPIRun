@@ -70,8 +70,23 @@ $(document).ready(function() {
         // enable the first tab (index starting at 0)
         $('#tabs li:eq(0) a').tab('show');
     });
+    $("#testcase4_5Btn").click(function() {
+        $("#PSOARuleMLXMLKB").val(Example4_5);
+        // enable the first tab (index starting at 0)
+        $('#tabs li:eq(0) a').tab('show');
+    });
+    $("#testcase4_6aBtn").click(function() {
+        $("#PSOARuleMLXMLKB").val(Example4_6_non_objectified);
+        // enable the first tab (index starting at 0)
+        $('#tabs li:eq(0) a').tab('show');
+    });
     $("#testcase4_6Btn").click(function() {
         $("#PSOARuleMLXMLKB").val(Example4_6);
+        // enable the first tab (index starting at 0)
+        $('#tabs li:eq(0) a').tab('show');
+    });
+    $("#testcase4_7aBtn").click(function() {
+        $("#PSOARuleMLXMLKB").val(Example4_7_non_objectified);
         // enable the first tab (index starting at 0)
         $('#tabs li:eq(0) a').tab('show');
     });
@@ -90,6 +105,11 @@ $(document).ready(function() {
         // enable the first tab (index starting at 0)
         $('#tabs li:eq(0) a').tab('show');
     });
+    $("#testcase4_10Btn").click(function() {
+        $("#PSOARuleMLXMLKB").val(Example4_10);
+        // enable the first tab (index starting at 0)
+        $('#tabs li:eq(0) a').tab('show');
+    });
     $("#testcase4_11Btn").click(function() {
         $("#PSOARuleMLXMLKB").val(Example4_11);
         // enable the first tab (index starting at 0)
@@ -100,13 +120,63 @@ $(document).ready(function() {
         // enable the first tab (index starting at 0)
         $('#tabs li:eq(0) a').tab('show');
     });
+    $("#testcase4_13Btn").click(function() {
+        $("#PSOARuleMLXMLKB").val(Example4_13);
+        // enable the first tab (index starting at 0)
+        $('#tabs li:eq(0) a').tab('show');
+    });
+    $("#testcase4_14Btn").click(function() {
+        $("#PSOARuleMLXMLKB").val(Example4_14);
+        // enable the first tab (index starting at 0)
+        $('#tabs li:eq(0) a').tab('show');
+    });
     $("#testcase4_15Btn").click(function() {
         $("#PSOARuleMLXMLKB").val(Example4_15);
         // enable the first tab (index starting at 0)
         $('#tabs li:eq(0) a').tab('show');
     });
+    $("#testcase4_16Btn").click(function() {
+        $("#PSOARuleMLXMLKB").val(Example4_16);
+        // enable the first tab (index starting at 0)
+        $('#tabs li:eq(0) a').tab('show');
+    });
     $("#testcase4_17Btn").click(function() {
         $("#PSOARuleMLXMLKB").val(Example4_17);
+        // enable the first tab (index starting at 0)
+        $('#tabs li:eq(0) a').tab('show');
+    });
+    $("#testcase4_18Btn").click(function() {
+        $("#PSOARuleMLXMLKB").val(Example4_18);
+        // enable the first tab (index starting at 0)
+        $('#tabs li:eq(0) a').tab('show');
+    });
+    $("#testcase4_19Btn").click(function() {
+        $("#PSOARuleMLXMLKB").val(Example4_19);
+        // enable the first tab (index starting at 0)
+        $('#tabs li:eq(0) a').tab('show');
+    });
+    $("#testcase4_20Btn").click(function() {
+        $("#PSOARuleMLXMLKB").val(Example4_20);
+        // enable the first tab (index starting at 0)
+        $('#tabs li:eq(0) a').tab('show');
+    });
+    $("#testcase4_21Btn").click(function() {
+        $("#PSOARuleMLXMLKB").val(Example4_21);
+        // enable the first tab (index starting at 0)
+        $('#tabs li:eq(0) a').tab('show');
+    });
+    $("#testcase4_22Btn").click(function() {
+        $("#PSOARuleMLXMLKB").val(Example4_22);
+        // enable the first tab (index starting at 0)
+        $('#tabs li:eq(0) a').tab('show');
+    });
+    $("#testcase4_23Btn").click(function() {
+        $("#PSOARuleMLXMLKB").val(Example4_23);
+        // enable the first tab (index starting at 0)
+        $('#tabs li:eq(0) a').tab('show');
+    });
+    $("#testcase4_24Btn").click(function() {
+        $("#PSOARuleMLXMLKB").val(Example4_24);
         // enable the first tab (index starting at 0)
         $('#tabs li:eq(0) a').tab('show');
     });

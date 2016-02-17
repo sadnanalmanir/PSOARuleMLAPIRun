@@ -111,6 +111,10 @@ public interface AbstractSyntax {
 		public boolean isAtomic();
 
 		public Atomic asAtomic();
+                
+                public boolean isHead();
+                
+                public Head asHead();
 
 	}
 
@@ -531,6 +535,9 @@ public interface AbstractSyntax {
 	 *            nonnull
 	 */
 	public Clause createClause(Atomic formula);
+        
+        //
+        public Clause createClause(Head head);
 
 	/**
 	 * @param heads

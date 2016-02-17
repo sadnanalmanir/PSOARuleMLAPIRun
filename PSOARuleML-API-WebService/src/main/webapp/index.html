@@ -40,7 +40,7 @@
                         <span class="icon-bar"></span>
                     </button>
 
-                    <a class="navbar-brand" href="/"><img src="images/psoa-logo.png" alt="PSOA RuleML Logo"></a>
+                    <a class="navbar-brand" href="http://psoa-rulemlapi.rhcloud.com/psoaxml2ps/"><img src="images/psoa-logo.png" alt="PSOA RuleML Logo"></a>
 
                     <div class="nav-collapse collapse navbar-responsive-collapse">
                         <ul class="nav navbar-nav">
@@ -112,19 +112,33 @@
                     <!--p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p-->
 
                     <h4>Select any PSOA RuleML/XML Rulebase</h4>
-                    <div class="list-group">
+                    <div class="list-group" id="collectionOfPSOARuleMLExamples">
                         <a href="#" class="list-group-item active" id="testcase4_1Btn">Single-tuple psoa term</a>
                         <a href="#" class="list-group-item" id="testcase4_2Btn">Multi-slot psoa term</a>
                         <a href="#" class="list-group-item" id="testcase4_3Btn">Multi-valued Slot</a>
                         <a href="#" class="list-group-item" id="testcase4_4Btn">Psoa terms with slots and tuples</a>
+                        <a href="#" class="list-group-item" id="testcase4_5Btn">Class Membership</a>
+                        <a href="#" class="list-group-item" id="testcase4_6aBtn">Family (Non-objectified)</a>
                         <a href="#" class="list-group-item" id="testcase4_6Btn">Family</a>
+                        <a href="#" class="list-group-item" id="testcase4_7aBtn">Family (Variation) (Non-objectified)</a>
                         <a href="#" class="list-group-item" id="testcase4_7Btn">Family (Variation)</a>
                         <a href="#" class="list-group-item" id="testcase4_8Btn">Rule Test - Psoa Terms</a>
                         <a href="#" class="list-group-item" id="testcase4_9Btn">Rule Test - Psoa Facts</a>
+                        <a href="#" class="list-group-item" id="testcase4_10Btn">Entail Everything</a>
                         <a href="#" class="list-group-item" id="testcase4_11Btn">Multiple Entailment</a>
                         <a href="#" class="list-group-item" id="testcase4_12Btn">Arbitrary Entailment</a>
-                        <a href="#" class="list-group-item" id="testcase4_15Btn">Inheritance</a>                        
+                        <a href="#" class="list-group-item" id="testcase4_13Btn">Objectification</a>
+                        <a href="#" class="list-group-item" id="testcase4_14Btn">Recursion</a>
+                        <a href="#" class="list-group-item" id="testcase4_15Btn">Subclass 1</a>
+                        <a href="#" class="list-group-item" id="testcase4_16Btn">Subclass 2</a>                        
                         <a href="#" class="list-group-item" id="testcase4_17Btn">Constant and String Equality</a>
+                        <a href="#" class="list-group-item" id="testcase4_18Btn">Factorial 1</a>
+                        <a href="#" class="list-group-item" id="testcase4_19Btn">Factorial 2</a>
+                        <a href="#" class="list-group-item" id="testcase4_20Btn">Factorial 3</a>
+                        <a href="#" class="list-group-item" id="testcase4_21Btn">Function 1</a>
+                        <a href="#" class="list-group-item" id="testcase4_22Btn">Function 2</a>
+                        <a href="#" class="list-group-item" id="testcase4_23Btn">Concatenation</a>
+                        <a href="#" class="list-group-item" id="testcase4_24Btn">Addition and Multiplication</a>
                         <a href="#" class="list-group-item" id="testcase4_25Btn">Music Album</a>
 
                     </div><!-- list-group -->
@@ -200,16 +214,31 @@
         <script src="includes/js/testcases/single_tuple_psoa_term.js"></script>
         <script src="includes/js/testcases/multi_slot_psoa_term.js"></script>	
         <script src="includes/js/testcases/multi_valued_slot.js"></script>	
-        <script src="includes/js/testcases/psoa_terms_with_slots_and_tuples.js"></script>	
+        <script src="includes/js/testcases/psoa_terms_with_slots_and_tuples.js"></script>
+        <script src="includes/js/testcases/class_membership.js"></script>
+        <script src="includes/js/testcases/family_non_objectified.js"></script>
         <script src="includes/js/testcases/family.js"></script>	
+        <script src="includes/js/testcases/family_variation_non_objectified.js"></script>
         <script src="includes/js/testcases/family_variation.js"></script>	
         <script src="includes/js/testcases/rule_test_psoa_facts.js"></script>	
         <script src="includes/js/testcases/rule_test_psoa_terms.js"></script>	
+        <script src="includes/js/testcases/entail_everything.js"></script>
         <script src="includes/js/testcases/multiple_entailment.js"></script>	
-        <script src="includes/js/testcases/arbitrary_entailment.js"></script>	
-        <script src="includes/js/testcases/inheritance.js"></script>	
+        <script src="includes/js/testcases/arbitrary_entailment.js"></script>	        	
+        <script src="includes/js/testcases/objectification.js"></script>
+        <script src="includes/js/testcases/recursion.js"></script>
+        <script src="includes/js/testcases/subclass1.js"></script>
+        <script src="includes/js/testcases/subclass2.js"></script>        
         <script src="includes/js/testcases/constant_and_string_equality.js"></script>	
-        <script src="includes/js/testcases/music_album.js"></script>   
+        <script src="includes/js/testcases/factorial1.js"></script>
+        <script src="includes/js/testcases/factorial2.js"></script>
+        <script src="includes/js/testcases/factorial3.js"></script>
+        <script src="includes/js/testcases/function_1.js"></script>  
+        <script src="includes/js/testcases/function_2.js"></script>  
+        <script src="includes/js/testcases/concatenation_original.js"></script>
+        <script src="includes/js/testcases/addition_and_multiplication.js"></script>
+        <script src="includes/js/testcases/music_album.js"></script>  
+        
         
     </body>
 </html>

@@ -274,6 +274,11 @@ public class DefaultAbstractSyntax implements AbstractSyntax {
 			assert atomic != null;
 			_content = atomic;
 		}
+                
+                public Clause(AbstractSyntax.Head head) {
+			assert head != null;
+			_content = head;
+		}
 
 		public boolean isImplies() {
 			return _content instanceof AbstractSyntax.Implies;
@@ -293,6 +298,15 @@ public class DefaultAbstractSyntax implements AbstractSyntax {
 			return (AbstractSyntax.Atomic) _content;
 		}
 
+                public boolean isHead() {
+                        return _content instanceof AbstractSyntax.Head;
+                }
+
+                public AbstractSyntax.Head asHead() {
+                        assert isHead();
+                        return (AbstractSyntax.Head) _content;
+                }
+                
 		public String toString() {
 			return toString("");
 		}
@@ -301,12 +315,16 @@ public class DefaultAbstractSyntax implements AbstractSyntax {
 			if (isImplies())
 				return asImplies().toString(indent);
 
-			assert isAtomic();
-			return asAtomic().toString(indent);
+                        else if (isAtomic())
+                            return asAtomic().toString(indent);
+                        
+                        else if (isHead())
+                            return asHead().toString(indent);
+                        else
+                            throw new Error("Error in Clause");
 		}
 
 		private Object _content;
-
 	}
 
 	/****************************************************************************
@@ -381,7 +399,6 @@ public class DefaultAbstractSyntax implements AbstractSyntax {
 
 		private LinkedList<AbstractSyntax.Head> _heads;
 		private AbstractSyntax.Formula _body;
-
 
 	} // class Implies
 
@@ -904,9 +921,11 @@ public class DefaultAbstractSyntax implements AbstractSyntax {
 		public Psoa(AbstractSyntax.Term object, AbstractSyntax.Term classTerm,
 				Iterable<AbstractSyntax.Tuple> tuples,
 				Iterable<AbstractSyntax.Slot> slots) {
-			assert object != null;
+			//assert object != null;
 			assert classTerm != null;
-			_object = object;
+			
+                        
+                        _object = object;
 			_classTerm = classTerm;
 
 			_tuples = new LinkedList<AbstractSyntax.Tuple>();
@@ -941,7 +960,8 @@ public class DefaultAbstractSyntax implements AbstractSyntax {
 			HashSet<AbstractSyntax.Var> result = new HashSet<AbstractSyntax.Var>();
 			// Set<AbstractSyntax.Var> result = _instance.variables();
 			// result = _instance.variables();
-			result.addAll(_object.variables());
+                        if(_object != null)
+                            result.addAll(_object.variables());
 			result.addAll(_classTerm.variables());
 
 			if (_tuples != null)
@@ -962,7 +982,13 @@ public class DefaultAbstractSyntax implements AbstractSyntax {
 		}
 
 		public String toString(String indent) {
-			String result = indent + _object.toString("") + "#"
+                    
+                        String result;
+                        
+                        if(_object == null)
+                            result = indent + _classTerm.toString("") + "(";
+                        else
+                            result = indent + _object.toString("") + "#"
 					+ _classTerm.toString("") + "(";
 
 			//result += iterableToStringIfNonEmpty(_tuples, indent, "" + indent + "")
@@ -1423,6 +1449,10 @@ public class DefaultAbstractSyntax implements AbstractSyntax {
 		return new Clause(formula);
 	}
 
+        public AbstractSyntax.Clause createClause(AbstractSyntax.Head head) {
+		return new Clause(head);
+	}
+        
 	/**
 	 * @param heads
 	 *            can be null or empty
