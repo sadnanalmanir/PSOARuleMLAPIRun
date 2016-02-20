@@ -18,7 +18,7 @@ import org.ruleml.psoa.absyntax.AbstractSyntax.Equal;
 import org.ruleml.psoa.absyntax.AbstractSyntax.Formula;
 import org.ruleml.psoa.absyntax.AbstractSyntax.Formula_External;
 import org.ruleml.psoa.absyntax.AbstractSyntax.Group;
-import org.ruleml.psoa.absyntax.AbstractSyntax.GroupElement;
+import org.ruleml.psoa.absyntax.AbstractSyntax.Sentence;
 import org.ruleml.psoa.absyntax.AbstractSyntax.Head;
 import org.ruleml.psoa.absyntax.AbstractSyntax.Implies;
 import org.ruleml.psoa.absyntax.AbstractSyntax.Import;
@@ -143,12 +143,12 @@ public class Parser {
 	 * @return Group or nested Groups
 	 */
 
-	private AbstractSyntax.GroupElement convert(
+	private AbstractSyntax.Sentence convert(
 			org.ruleml.psoa.parser.jaxb.Group topLevelGroup,
 			AbstractSyntax absSynFactory) {
 
-		LinkedList<AbstractSyntax.GroupElement> grpElements = new LinkedList<AbstractSyntax.GroupElement>();
-		for (Sentence grpelm : topLevelGroup.getSentence())
+		LinkedList<AbstractSyntax.Sentence> grpElements = new LinkedList<AbstractSyntax.Sentence>();
+		for (org.ruleml.psoa.parser.jaxb.Sentence grpelm : topLevelGroup.getSentence())
 			grpElements.addLast(convert(grpelm, absSynFactory));
 
 		return absSynFactory.createGroup(grpElements);
@@ -164,7 +164,7 @@ public class Parser {
 	 * @return Groupelement as fact or rule
 	 */
 
-	private GroupElement convert(Sentence grpelm, AbstractSyntax absSynFactory) {
+	private Sentence convert(org.ruleml.psoa.parser.jaxb.Sentence grpelm, AbstractSyntax absSynFactory) {
 
 		if (grpelm.getForall() != null) {
 			Iterable<AbstractSyntax.Var> vars = convertVars(grpelm.getForall()
@@ -205,7 +205,7 @@ public class Parser {
 		}                                
                 
 		if (grpelm.getGroup() != null) {
-			AbstractSyntax.GroupElement gr = convert(grpelm.getGroup(),
+			AbstractSyntax.Sentence gr = convert(grpelm.getGroup(),
 					absSynFactory);
 			AbstractSyntax.Group g = (Group) gr;
 

@@ -126,7 +126,7 @@ public class DefaultAbstractSyntax implements AbstractSyntax {
 	 ************************* Group *********************************
 	 *****************************************************************************/
 
-	public static class Group extends GroupElement implements
+	public static class Group extends Sentence implements
 			AbstractSyntax.Group {
 
 		/**
@@ -134,14 +134,14 @@ public class DefaultAbstractSyntax implements AbstractSyntax {
 		 *            may be null
 		 */
 		public Group(
-				Iterable<? extends AbstractSyntax.GroupElement> groupElement) {
-			_groupElement = new LinkedList<AbstractSyntax.GroupElement>();
+				Iterable<? extends AbstractSyntax.Sentence> groupElement) {
+			_groupElement = new LinkedList<AbstractSyntax.Sentence>();
 			if (groupElement != null)
-				for (AbstractSyntax.GroupElement grElement : groupElement)
+				for (AbstractSyntax.Sentence grElement : groupElement)
 					_groupElement.addLast(grElement);
 		}
 
-		public Collection<? extends AbstractSyntax.GroupElement> getGroupElement() {
+		public Collection<? extends AbstractSyntax.Sentence> getSentence() {
 			return _groupElement;
 		}
 
@@ -165,22 +165,22 @@ public class DefaultAbstractSyntax implements AbstractSyntax {
 			if (_groupElement.isEmpty())
 				return result + " ()";
 			result += " (\n";
-			for (AbstractSyntax.GroupElement ge : _groupElement)
+			for (AbstractSyntax.Sentence ge : _groupElement)
 				result += indent + "\n" + ge.toString(indent + "  ") + "\n";
 			result += "\n" + indent + ")";
 			return result;
 		}
 
-		private LinkedList<AbstractSyntax.GroupElement> _groupElement;
+		private LinkedList<AbstractSyntax.Sentence> _groupElement;
 
 	} // class Group
 
 	/****************************************************************************
-	 ************************* GroupElement ***************************
+	 ************************* Sentence ***************************
 	 *****************************************************************************/
 	/* changed to abstract */
-	public static abstract class GroupElement implements
-			AbstractSyntax.GroupElement {
+	public static abstract class Sentence implements
+			AbstractSyntax.Sentence {
 
 		public AbstractSyntax.Rule asRule() {
 			assert this instanceof AbstractSyntax.Rule;
@@ -198,13 +198,13 @@ public class DefaultAbstractSyntax implements AbstractSyntax {
 
 
 
-	} // class GroupElement
+	} // class Sentence
 
 	/****************************************************************************
 	 ************************* Rule *********************************
 	 *****************************************************************************/
 
-	public static class Rule extends GroupElement implements
+	public static class Rule extends Sentence implements
 			AbstractSyntax.Rule {
 
 		/**
@@ -1426,7 +1426,7 @@ public class DefaultAbstractSyntax implements AbstractSyntax {
 	}
 
 	public AbstractSyntax.Group createGroup(
-			Iterable<AbstractSyntax.GroupElement> elements) {
+			Iterable<AbstractSyntax.Sentence> elements) {
 		return new Group(elements);
 	}
 

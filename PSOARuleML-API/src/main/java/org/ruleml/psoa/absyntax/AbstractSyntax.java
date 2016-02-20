@@ -67,18 +67,18 @@ public interface AbstractSyntax {
 
 	/**
 	 * 
-	 * Group containing GroupElements
+	 * Group containing Sentences
 	 * 
 	 */
-	public interface Group extends GroupElement {
+	public interface Group extends Sentence {
 
 		/** @return nonempty sequence of Groups or nested Groups containing Rules */
-		public Collection<? extends GroupElement> getGroupElement();
+		public Collection<? extends Sentence> getSentence();
 
 	}
 
 	/** Common base for Group and Rule. */
-	public interface GroupElement extends Construct {
+	public interface Sentence extends Construct {
 
 		public Rule asRule();
 
@@ -91,7 +91,7 @@ public interface AbstractSyntax {
 	 * Rule containing Cariables and Clause.
 	 * 
 	 */
-	public interface Rule extends GroupElement {
+	public interface Rule extends Sentence {
 
 		/** @return nonempty sequence of Variables */
 		public Collection<Var> getVariables();
@@ -512,7 +512,7 @@ public interface AbstractSyntax {
 	 * @param elements
 	 *            nonnull
 	 */
-	public Group createGroup(Iterable<GroupElement> elements);
+	public Group createGroup(Iterable<Sentence> elements);
 
 	/**
 	 * @param vars
