@@ -1,686 +1,797 @@
 /**
- * This class contains the interfaces for the Abstract Syntax building blocks.
+ * This file is part of PSOARuleML-API. This class contains the interfaces for
+ * the Abstract Syntax building blocks.
+ * <p/>
+ * PSOARuleML-API is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the Free
+ * Software Foundation, either version 3 of the License, or (at your option) any
+ * later version.
+ * <p/>
+ * PSOARuleML-API is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+ * details.
+ * <p/>
+ * You should have received a copy of the GNU General Public License along with
+ * PSOARuleML-API. If not, see <http://www.gnu.org/licenses/>.
  */
-
 package org.ruleml.psoa.absyntax;
 
 import java.util.*;
 
+/**
+ * @author Mohammad Sadnan Al Manir, University of New Brunswick, Saint John
+ */
 public interface AbstractSyntax {
 
-	/** Common interface for all abstract syntax constructs. */
-	public interface Construct {
+    /**
+     * Common interface for all abstract syntax constructs.
+     */
+    public interface Construct {
+
+        /**
+         * Renders the object in the presentation syntax.
+         *
+         * @return toString("")
+         */
+        public String toString();
+
+        /**
+         * Renders the objects in the presentation syntax with the specified
+         * base indentation.
+         *
+         * @param indent
+         * @return String
+         */
+        public String toString(String indent);
+
+    }
+
+    /**
+     * PSOA document containing Import directives NOTE: Base and Prefixes will
+     * be handled explicitly.
+     */
+    public interface Document extends Construct {
 
-		/**
-		 * Renders the object in the presentation syntax.
-		 * 
-		 * @return toString("")
-		 */
-		public String toString();
+        public Iterable<Import> getImports();
+
+        /**
+         * @return possibly null
+         */
+        public Group getGroup();
+    }
 
-		/**
-		 * Renders the objects in the presentation syntax with the specified
-		 * base indentation.
-		 * 
-		 * @param indent
-		 * @return String
-		 */
-		public String toString(String indent);
+    /**
+     * Import directive containing location and optional profile
+     */
+    public interface Import extends Construct {
+
+        /**
+         * @return location
+         */
+        public String getIRI();
+
+        /**
+         * @return profile
+         */
+        public Profile getProfile();
+
+    }
+
+    /**
+     *
+     * Optional profile for Import directive
+     *
+     */
+    public interface Profile extends Construct {
 
+        /**
+         * @return profile if set with the locator
+         */
+        public String getIRI();
+    }
 
-	}
+    /**
+     * Group containing Sentence(s) (also known as Group elements).
+     */
+    public interface Group extends Sentence {
 
-	/**
-	 * interface for psoa document containing Import directives NOTE: Base and
-	 * Prefixes will be handled explicitly without creating objects LATER
-	 */
-	public interface Document extends Construct {
+        /**
+         * @return nonempty sequence of Groups or nested Groups containing Rules
+         */
+        public Collection<? extends Sentence> getSentence();
 
-		public Iterable<Import> getImports();
+    }
 
-		/** @return possibly null */
-		public Group getGroup();
-	}
+    /**
+     * Common base for Group and Rule.
+     */
+    public interface Sentence extends Construct {
 
-	/**
-	 * Import directive containing location and optional profile
-	 */
-	public interface Import extends Construct {
+        public Rule asRule();
+
+        public Group asGroup();
 
-		/** @return location */
-		public String getIRI();
+    }
 
-		/** @return profile */
-		public Profile getProfile();
+    /**
+     * Rule containing Variables and Clause.
+     */
+    public interface Rule extends Sentence {
 
-	}
+        /**
+         * @return nonempty sequence of Variables
+         */
+        public Collection<Var> getVariables();
 
-	/**
-	 * 
-	 * Optional profile for Import directive
-	 * 
-	 */
-	public interface Profile extends Construct {
-		/** @return profile if set with the locator */
-		public String getIRI();
-	}
+        /**
+         * @return Clause
+         */
+        public Clause getClause();
 
-	/**
-	 * 
-	 * Group containing Sentences
-	 * 
-	 */
-	public interface Group extends Sentence {
+    }
 
-		/** @return nonempty sequence of Groups or nested Groups containing Rules */
-		public Collection<? extends Sentence> getSentence();
+    /**
+     * Common base for Implies and Atomic
+     */
+    public interface Clause extends Construct {
 
-	}
+        public boolean isImplies();
 
-	/** Common base for Group and Rule. */
-	public interface Sentence extends Construct {
+        public Implies asImplies();
 
-		public Rule asRule();
+        public boolean isAtomic();
 
-		public Group asGroup();
+        public Atomic asAtomic();
 
-	}
+        public boolean isHead();
 
-	/**
-	 * 
-	 * Rule containing Cariables and Clause.
-	 * 
-	 */
-	public interface Rule extends Sentence {
+        public Head asHead();
 
-		/** @return nonempty sequence of Variables */
-		public Collection<Var> getVariables();
+    }
 
-		/** @return Clause */
-		public Clause getClause();
+    /**
+     * Implication containing Condition and Conclusion.
+     */
+    public interface Implies extends Construct {
 
-	}
+        /**
+         * @return nonempty sequence of Heads
+         */
+        public Collection<? extends Head> getHead();
 
-	/** Common base for Implies and Atomic */
-	public interface Clause extends Construct {
+        /**
+         * @return possibly null, if there is no condition
+         */
+        public Formula getBody();
 
-		public boolean isImplies();
+        /**
+         * The set of all free variables.
+         */
+        public Set<Var> variables();
 
-		public Implies asImplies();
+    }
 
-		public boolean isAtomic();
+    /**
+     * Common base for Atom, Equal or Subclass Atomic formula.
+     */
+    public interface Atomic extends Formula {
 
-		public Atomic asAtomic();
-                
-                public boolean isHead();
-                
-                public Head asHead();
+        public Atom asAtom();
 
-	}
+        public Equal asEqual();
 
-	/**
-	 * 
-	 * Implication containing Condition and Conclusion
-	 * 
-	 */
-	public interface Implies extends Construct {
+        public Subclass asSubclass();
 
-		/** @return nonempty sequence of Heads */
-		public Collection<? extends Head> getHead();
+        /**
+         * The set of all free variables.
+         */
+        public Set<Var> variables();
 
-		/** @return possibly null, if there is no condition */
-		public Formula getBody();
+    }
 
-		/** The set of all free variables. */
-		public Set<Var> variables();
+    /**
+     * Conclusion formula containing Heads.
+     */
+    public interface Head extends Construct {
 
-	} // interface Implies
+        /**
+         * The set of all free variables.
+         */
+        public Set<Var> variables();
 
-	/** Common base for Atom, Equal or Subclass Atomic formula. */
-	public interface Atomic extends Formula {
+        /**
+         * @return nonempty sequence of Variables
+         */
+        public Collection<Var> getVariables();
 
-		public Atom asAtom();
+        /**
+         * @return Atomic formula
+         */
+        public Atomic getAtomic();
 
-		public Equal asEqual();
+    }
 
-		public Subclass asSubclass();
+    /**
+     * Common base for Conjunction, Disjunction, Existential, Atomic or External
+     * Formula.
+     */
+    public interface Formula extends Construct {
 
-		/** The set of all free variables. */
-		public Set<Var> variables();
+        public Formula_And asAndFormula();
 
-	}
+        public Formula_Or asOrFormula();
 
-	/**
-	 * 
-	 * Conclusion formula containing Heads
-	 * 
-	 */
-	public interface Head extends Construct {
+        public Formula_Exists asExistsFormula();
 
-		/** The set of all free variables. */
-		public Set<Var> variables();
+        public Atomic asAtomic();
 
-		/** @return nonempty sequence of Variables */
-		public Collection<Var> getVariables();
+        public Formula_External asExternalFormula();
 
-		/** @return Atomic formula */
-		public Atomic getAtomic();
+        /**
+         * The set of all free variables.
+         */
+        public Set<Var> variables();
 
-	}
+    }
 
-	/**
-	 * Common base for Conjunction, Disjunction, Existential, Atomic or External
-	 * Formula
-	 */
-	public interface Formula extends Construct {
+    /**
+     * Conjunction of Formulas as Condition formulas.
+     */
+    public interface Formula_And extends Formula {
 
-		public Formula_And asAndFormula();
+        /**
+         * @return nonempty sequence of Formulas
+         */
+        public Collection<? extends Formula> getFormulas();
 
-		public Formula_Or asOrFormula();
+        /**
+         * The set of all free variables.
+         */
+        public Set<Var> variables();
 
-		public Formula_Exists asExistsFormula();
+    }
 
-		public Atomic asAtomic();
+    /**
+     * Disjunction of Formulas as Condition formulas.
+     */
+    public interface Formula_Or extends Formula {
 
-		public Formula_External asExternalFormula();
+        /**
+         * @return nonempty sequence of Formulas
+         */
+        public Collection<? extends Formula> getFormulas();
 
-		/** The set of all free variables. */
-		public Set<Var> variables();
+        /**
+         * The set of all free variables.
+         */
+        public Set<Var> variables();
 
-	}
+    }
 
-	/**
-	 * 
-	 * Conjunction of Formulas as Condition formulas
-	 * 
-	 */
-	public interface Formula_And extends Formula {
+    /**
+     * Formula with Existentially quantified formulas as Condition formulas.
+     */
+    public interface Formula_Exists extends Formula {
 
-		/** @return nonempty sequence of Formulas */
-		public Collection<? extends Formula> getFormulas();
+        /**
+         * @return nonempty sequence of variables
+         */
+        public Collection<Var> getVariables();
 
-		/** The set of all free variables. */
-		public Set<Var> variables();
+        /**
+         * @return Formula.
+         */
+        public Formula getFormula();
 
-	}
+        /**
+         * The set of all free variables.
+         */
+        public Set<Var> variables();
+    }
 
-	/**
-	 * 
-	 * Disjunction of Formulas as Condition formulas
-	 * 
-	 */
-	public interface Formula_Or extends Formula {
+    /**
+     * External Formula as Condition formula.
+     */
+    public interface Formula_External extends Formula {
 
-		/** @return nonempty sequence of Formulas */
-		public Collection<? extends Formula> getFormulas();
+        /**
+         * @return External Atom
+         */
+        public Atom getContent();
 
-		/** The set of all free variables. */
-		public Set<Var> variables();
+        /**
+         * The set of all free variables.
+         */
+        public Set<Var> variables();
 
-	}
+    }
 
-	/**
-	 * 
-	 * Formula with Existentially quantified formulas as Condition formulas
-	 * 
-	 */
-	public interface Formula_Exists extends Formula {
+    /**
+     * Atom as Psoa term.
+     */
+    public interface Atom extends Atomic {
 
-		/** @return nonempty sequence of variables */
-		public Collection<Var> getVariables();
+        /**
+         * @return Psoa
+         */
+        public Psoa getPsoa();
 
-		/** @return Formula. */
-		public Formula getFormula();
+        /**
+         * The set of all free variables.
+         */
+        public Set<Var> variables();
 
-		/** The set of all free variables. */
-		public Set<Var> variables();
-	}
+    }
 
-	/**
-	 * 
-	 * External Formula as Condition formula
-	 * 
-	 */
-	public interface Formula_External extends Formula {
+    /**
+     * Equality Atomic formula.
+     */
+    public interface Equal extends Atomic {
 
-		/** @return External Atom */
-		public Atom getContent();
+        /**
+         * @return left hand Term
+         */
+        public Term getLeft();
 
-		/** The set of all free variables. */
-		public Set<Var> variables();
+        /**
+         * @return right hand Term
+         */
+        public Term getRight();
 
-	}
+        /**
+         * The set of all free variables.
+         */
+        public Set<Var> variables();
 
-	/**
-	 * 
-	 * Atom as Psoa term
-	 * 
-	 */
-	public interface Atom extends Atomic {
+    }
 
-		/** @return Psoa */
-		public Psoa getPsoa();
+    /**
+     * Subclass Atomic formula.
+     */
+    public interface Subclass extends Atomic {
 
-		/** The set of all free variables. */
-		public Set<Var> variables();
+        /**
+         * @return subclass Term
+         */
+        public Term getSubclass();
 
-	}
+        /**
+         * @return superclass Term
+         */
+        public Term getSuperclass();
 
-	/**
-	 * 
-	 * Equality Atomic formula
-	 * 
-	 */
-	public interface Equal extends Atomic {
+        /**
+         * The set of all free variables.
+         */
+        public Set<Var> variables();
 
-		/** @return left hand Term */
-		public Term getLeft();
+    }
 
-		/** @return right hand Term */
-		public Term getRight();
+    /**
+     * Psoa atomic term with membership, optionally tuples and slots.
+     */
+    public interface Psoa extends Expr {
 
-		/** The set of all free variables. */
-		public Set<Var> variables();
+        /**
+         * @return instance Term
+         */
+        public Term getInstance();
 
-	}
+        /**
+         * @return class Term
+         */
+        public Term getClassExpr();
 
-	/**
-	 * 
-	 * Subclass Atomic formula
-	 * 
-	 */
-	public interface Subclass extends Atomic {
+        /**
+         * @return nonempty sequence of Positional Atoms
+         */
+        public Collection<? extends Tuple> getPositionalAtom();
 
-		/** @return subclass Term */
-		public Term getSubclass();
+        /**
+         * @return nonempty sequence of Slotted Atoms
+         */
+        public Collection<? extends Slot> getSlottedAtom();
 
-		/** @return superclass Term */
-		public Term getSuperclass();
+        /**
+         * The set of all free variables.
+         */
+        public Set<Var> variables();
 
-		/** The set of all free variables. */
-		public Set<Var> variables();
+        public String toString(String indent);
 
-	}
+    }
 
-	/**
-	 * 
-	 * psoa atomic term with membership, optionally tuples and slots
-	 * 
-	 */
-	public interface Psoa extends Expr {
+    /**
+     * Slotted Term with Name, Value pair.
+     */
+    public interface Slot extends Construct {
 
-		/** @return instance Term */
-		public Term getInstance();
+        /**
+         * @return slot Name Term
+         */
+        public Term getName(); // not really a name rather term
 
-		/** @return class Term */
-		public Term getClassExpr();
+        /**
+         * @return superclass Term
+         */
+        public Term getValue();
 
-		/** @return nonempty sequence of Positional Atoms */
-		public Collection<? extends Tuple> getPositionalAtom();
+        /**
+         * The set of all free variables.
+         */
+        public Set<Var> variables();
 
-		/** @return nonempty sequence of Slotted Atoms */
-		public Collection<? extends Slot> getSlottedAtom();
+    }
 
-		/** The set of all free variables. */
-		public Set<Var> variables();
+    /**
+     * Tuples as positional arguments.
+     */
+    public interface Tuple extends Construct {
 
-		public String toString(String indent);
+        /**
+         * @return nonempty sequence of Arguments
+         */
+        public Collection<? extends Term> getArguments();
 
-	}
+        /**
+         * The set of all free variables.
+         */
+        public Set<Var> variables();
 
-	/**
-	 * 
-	 * Slotted Term with Name, Value pair
-	 * 
-	 */
-	public interface Slot extends Construct {
+    }
 
-		/** @return slot Name Term */
-		public Term getName(); // not really a name rather term
+    /**
+     * Common base for Constants, Variables, External Expressions.
+     */
+    public interface Term extends Construct, Comparable<Term> {
 
-		/** @return superclass Term */
-		public Term getValue();
+        public Const asConst();
 
-		/** The set of all free variables. */
-		public Set<Var> variables();
+        public Var asVar();
 
-	}
+        public Psoa asPsoa();
 
-	/**
-	 * 
-	 * Tuples as positional arguments
-	 * 
-	 */
-	public interface Tuple extends Construct {
+        public External asExternal();
 
-		/** @return nonempty sequence of Arguments */
-		public Collection<? extends Term> getArguments();
+        /**
+         * The set of all free variables.
+         */
+        public Set<Var> variables();
 
-		/** The set of all free variables. */
-		public Set<Var> variables();
+    }
 
-	}
+    /**
+     * Common base for Literal Constants and Short Constants.
+     */
+    public interface Const extends Term {
 
-	/** Common base for Constants, Variables, External Expressions. */
-	public interface Term extends Construct, Comparable<Term> {
+        public Const_Literal asConstLiteral();
 
-		public Const asConst();
-		
-		public Var asVar();
+        public Const_Constshort asConstshort();
 
-		public Psoa asPsoa();
+        /**
+         * The set of all free variables.
+         */
+        public Set<Var> variables();
 
-		public External asExternal();
+    }
 
-		/** The set of all free variables. */
-		public Set<Var> variables();
+    /**
+     * Literal constants with type.
+     */
+    public interface Const_Literal extends Const {
 
-	}
+        /**
+         * @return literal
+         */
+        public String getLiteral(); // cant be null
 
-	/** Common base for Literal Constants and Short Constants. */
-	public interface Const extends Term {
+        /**
+         * @return literal type
+         */
+        public Symspace getSymspace();
 
-		public Const_Literal asConstLiteral();
+        /**
+         * The set of all free variables.
+         */
+        public Set<Var> variables();
 
-		public Const_Constshort asConstshort();
+    }
 
-		/** The set of all free variables. */
-		public Set<Var> variables();
-
-	}
-
-	/**
-	 * 
-	 * Literal constants with type
-	 * 
-	 */
-	public interface Const_Literal extends Const {
-
-		/** @return literal */
-		public String getLiteral(); // cant be null
-
-		/** @return literal type */
-		public Symspace getSymspace();
-
-		/** The set of all free variables. */
-		public Set<Var> variables();
-
-	}
-
-	/**
-	 * 
-	 * Short constants without literal type
-	 * 
-	 */
-	public interface Const_Constshort extends Const {
-
-		/** @return short constants */
-		public String getConstshort();
-
-		/** The set of all free variables. */
-		public Set<Var> variables();
-
-	}
-
-	/**
-	 * 
-	 * Variable
-	 * 
-	 */
-	public interface Var extends Term {
-
-		/** @return variable */
-		public String getName();
-
-		/** The set of all free variables. */
-		public Set<Var> variables();
-
-	}
-
-	/**
-	 * 
-	 * Base for Expression
-	 * 
-	 */
-	public interface Expr extends Term {
-
-		public Psoa asPsoa();
-
-		/** The set of all free variables. */
-		public Set<Var> variables();
-	}
-
-	/**
-	 * 
-	 * Externally defined Expression
-	 * 
-	 */
-	public interface External extends Term {
-
-		/** @return Externally defined Psoa Term */
-		public Psoa getExternalExpr();
-
-		/** The set of all free variables. */
-		public Set<Var> variables();
-
-	}
-
-	/**
-	 * 
-	 * Literal type for literal constants
-	 * 
-	 */
-	public interface Symspace extends Construct {
-
-		public String getValue();
-
-		/** The set of all free variables. */
-		public Set<Var> variables();
-
-	}
-
-	// createX methods:
-
-	/**
-	 * @param imports
-	 *            can be null or empty
-	 * @param group
-	 *            can be null
-	 */
-	public Document createDocument(Iterable<Import> imports, Group group);
-
-	/**
-	 * 
-	 * @param iri
-	 *            nonnull
-	 * @param profile
-	 *            can be null or empty
-	 * 
-	 */
-	public Import createImport(String iri, Profile profile);
-
-	/**
-	 * 
-	 * @param iri
-	 *            nonnull
-	 * 
-	 */
-	public Profile createProfile(String iri);
-
-	/**
-	 * 
-	 * @param elements
-	 *            nonnull
-	 */
-	public Group createGroup(Iterable<Sentence> elements);
-
-	/**
-	 * @param vars
-	 *            can be null or empty
-	 * @param matrix
-	 *            nonnull
-	 */
-	public Rule createRule(Iterable<Var> vars, Clause matrix);
-
-	/**
-	 * 
-	 * @param implication
-	 *            nonnull
-	 */
-	public Clause createClause(Implies implication);
-
-	/**
-	 * 
-	 * @param formula
-	 *            nonnull
-	 */
-	public Clause createClause(Atomic formula);
-        
-        //
-        public Clause createClause(Head head);
-
-	/**
-	 * @param heads
-	 *            nonnull
-	 * @param condition
-	 *            can be null or empty
-	 */
-	public Implies createImplies(Iterable<Head> heads, Formula condition);
-
-	/**
-	 * Creates a rule head by applying an existential quantifier over the given
-	 * variables to the formula.
-	 * 
-	 * @param vars
-	 *            can be null or empty
-	 * @param matrix
-	 *            nonnull
-	 */
-	public Head createHead(Iterable<Var> vars, Atomic matrix);
-
-	/**
-	 * Creates conjunction.
-	 * 
-	 * @param formulas
-	 *            nonnull
-	 */
-	public Formula_And createFormula_And(Iterable<Formula> formulas);
-
-	/**
-	 * Creates disjunction.
-	 * 
-	 * @param formulas
-	 *            nonnull
-	 */
-	public Formula_Or createFormula_Or(Iterable<Formula> formulas);
-
-	/**
-	 * Creates existentially quantified formula.
-	 * 
-	 * @param vars
-	 *            nonnull
-	 * @param matrix
-	 *            nonnull
-	 */
-	public Formula_Exists createFormula_Exists(Iterable<Var> vars,
-			Formula matrix);
-
-	/**
-	 * 
-	 * @param atom
-	 *            nonnull
-	 */
-	public Formula_External createFormula_External(Atom atom);
-
-	/**
-	 * 
-	 * @param term
-	 *            nonnull
-	 */
-	public Atom createAtom(Psoa term);
-
-	/**
-	 * 
-	 * @param lhs
-	 *            nonnull
-	 * @param rhs
-	 *            nonnull
-	 * 
-	 */
-	public Equal createEqual(Term lhs, Term rhs);
-
-	/**
-	 * 
-	 * @param lhs
-	 *            nonnull
-	 * @param rhs
-	 *            nonnull
-	 * 
-	 */
-	public Subclass createSubclass(Term lhs, Term rhs);
-
-	/**
-	 * @param object
-	 *            nonnull
-	 * @param classTerm
-	 *            nonnull
-	 * @param tuples
-	 *            can be null or empty
-	 * @param slots
-	 *            can be null or empty
-	 */
-	public Psoa createPsoa(Term object, Term classTerm, Iterable<Tuple> tuples,
-			Iterable<Slot> slots);
-
-	/**
-	 * @param terms
-	 *            nonnull
-	 * 
-	 */
-	public Tuple createTuple(Iterable<Term> terms);
-
-	/**
-	 * 
-	 * @param name
-	 *            nonnull
-	 * @param value
-	 *            nonnull
-	 */
-	public Slot createSlot(Term name, Term value);
-
-	/**
-	 * 
-	 * @param literal
-	 *            nonnull
-	 * @param symspace
-	 *            nonnull
-	 */
-	public Const_Literal createConst_Literal(String literal, Symspace symspace);
-
-	/**
-	 * 
-	 * @param name
-	 *            nonnull
-	 */
-	public Const_Constshort createConst_Constshort(String name);
-
-	/**
-	 * @param name
-	 *            can be null or "" for anonymous variables.
-	 */
-	public Var createVar(String name);
-
-	/*
-	 * public Expr createExpr(Term object, Term classTerm, Iterable<Tuple>
-	 * tuples, Iterable<Slot> slots);
-	 */
-	public External createExternalExpr(Psoa externalexpr);
-
-	/**
-	 * 
-	 * @param value
-	 *            nonnull
-	 */
-	public Symspace createSymspace(String value);
+    /**
+     * Short constants without literal type.
+     */
+    public interface Const_Constshort extends Const {
+
+        /**
+         * @return short constants
+         */
+        public String getConstshort();
+
+        /**
+         * The set of all free variables.
+         */
+        public Set<Var> variables();
+
+    }
+
+    /**
+     * Variable.
+     */
+    public interface Var extends Term {
+
+        /**
+         * @return variable
+         */
+        public String getName();
+
+        /**
+         * The set of all free variables.
+         */
+        public Set<Var> variables();
+
+    }
+
+    /**
+     * Base for Expression.
+     */
+    public interface Expr extends Term {
+
+        public Psoa asPsoa();
+
+        /**
+         * The set of all free variables.
+         */
+        public Set<Var> variables();
+    }
+
+    /**
+     * Externally defined Expression.
+     */
+    public interface External extends Term {
+
+        /**
+         * @return Externally defined Psoa Term
+         */
+        public Psoa getExternalExpr();
+
+        /**
+         * The set of all free variables.
+         */
+        public Set<Var> variables();
+
+    }
+
+    /**
+     * Literal type for literal constants.
+     */
+    public interface Symspace extends Construct {
+
+        public String getValue();
+
+        /**
+         * The set of all free variables.
+         */
+        public Set<Var> variables();
+
+    }
+
+    // createX methods:
+    /**
+     * Creates document.
+     *
+     * @param imports can be null or empty
+     * @param group can be null
+     * @return document
+     */
+    public Document createDocument(Iterable<Import> imports, Group group);
+
+    /**
+     * Creates import.
+     *
+     * @param iri nonnull
+     * @param profile can be null or empty
+     * @return import
+     */
+    public Import createImport(String iri, Profile profile);
+
+    /**
+     * Creates Profile.
+     *
+     * @param iri nonnull
+     * @return Profile
+     */
+    public Profile createProfile(String iri);
+
+    /**
+     * Creates Group.
+     *
+     * @param sentences collection of sentences
+     * @return Group
+     */
+    public Group createGroup(Iterable<Sentence> sentences);
+
+    /**
+     * Creates Rule.
+     *
+     * @param vars can be null or empty
+     * @param matrix nonnull
+     * @return Rule
+     */
+    public Rule createRule(Iterable<Var> vars, Clause matrix);
+
+    /**
+     * Creates Clause.
+     *
+     * @param implication nonnull
+     * @return Clause
+     */
+    public Clause createClause(Implies implication);
+
+    /**
+     * Creates Clause.
+     *
+     * @param formula nonnull
+     * @return Clause
+     */
+    public Clause createClause(Atomic formula);
+
+    /**
+     * Creates Clause.
+     *
+     * @param head nonnull
+     * @return Clause
+     */
+    public Clause createClause(Head head);
+
+    /**
+     * Creates Implies.
+     *
+     * @param heads nonnull
+     * @param condition can be null or empty
+     * @return Implies
+     */
+    public Implies createImplies(Iterable<Head> heads, Formula condition);
+
+    /**
+     * Creates a rule head by applying an existential quantifier over the given
+     * variables to the formula.
+     *
+     * @param vars can be null or empty
+     * @param matrix nonnull
+     * @return conclusion
+     */
+    public Head createHead(Iterable<Var> vars, Atomic matrix);
+
+    /**
+     * Creates conjunction of formulas.
+     *
+     * @param formulas nonnull
+     * @return conjunction of formulas
+     */
+    public Formula_And createFormula_And(Iterable<Formula> formulas);
+
+    /**
+     * Creates disjunction of formulas.
+     *
+     * @param formulas nonnull
+     * @return disjunction of formulas
+     */
+    public Formula_Or createFormula_Or(Iterable<Formula> formulas);
+
+    /**
+     * Creates existentially quantified formula.
+     *
+     * @param vars nonnull
+     * @param matrix nonnull
+     * @return existentially quantified formula
+     */
+    public Formula_Exists createFormula_Exists(Iterable<Var> vars,
+            Formula matrix);
+
+    /**
+     * Creates external atomic formula.
+     *
+     * @param atom nonnull
+     * @return external atomic formula
+     */
+    public Formula_External createFormula_External(Atom atom);
+
+    /**
+     * Creates an atomic formula.
+     *
+     * @param term nonnull
+     * @return atomic formula
+     */
+    public Atom createAtom(Psoa term);
+
+    /**
+     * Creates equality expression.
+     *
+     * @param lhs nonnull
+     * @param rhs nonnull
+     * @return equality expression
+     */
+    public Equal createEqual(Term lhs, Term rhs);
+
+    /**
+     * Creates subclass expression.
+     *
+     * @param sub nonnull
+     * @param sup nonnull
+     * @return subclass expression
+     */
+    public Subclass createSubclass(Term sub, Term sup);
+
+    /**
+     * Creates a psoa term.
+     *
+     * @param object can be null or empty
+     * @param classTerm nonnull
+     * @param tuples can be null or empty
+     * @param slots can be null or empty
+     * @return psoa term
+     */
+    public Psoa createPsoa(Term object, Term classTerm, Iterable<Tuple> tuples,
+            Iterable<Slot> slots);
+
+    /**
+     * Creates argument (tuple).
+     *
+     * @param terms nonnull
+     * @return argument (tuple)
+     */
+    public Tuple createTuple(Iterable<Term> terms);
+
+    /**
+     * Creates slot as a name value pair
+     *
+     * @param name nonnull
+     * @param value nonnull
+     * @return slot as a name value pair
+     */
+    public Slot createSlot(Term name, Term value);
+
+    /**
+     * Creates typed literal constants.
+     *
+     * @param literal nonnull
+     * @param symspace nonnull
+     * @return typed literal constants
+     */
+    public Const_Literal createConst_Literal(String literal, Symspace symspace);
+
+    /**
+     * Creates untyped constants.
+     *
+     * @param name nonnull
+     * @return untyped constants
+     */
+    public Const_Constshort createConst_Constshort(String name);
+
+    /**
+     * Creates a variable.
+     *
+     * @param name can be null or "" for anonymous variables.
+     * @return variable
+     */
+    public Var createVar(String name);
+
+    /**
+     * Creates external psoa atom.
+     *
+     * @param externalexpr nonnull
+     * @return external psoa atom
+     */
+    public External createExternalExpr(Psoa externalexpr);
+
+    /**
+     * Creates type of constants.
+     *
+     * @param value nonnull
+     * @return type of constant
+     */
+    public Symspace createSymspace(String value);
 
 }
